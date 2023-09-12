@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@tools:sample/avatars"
-                tools:srcCompat="@drawable/top_login" />
+                android:src="@drawable/top_login" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -141,24 +142,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars"
-                    tools:srcCompat="@drawable/google" />
+                    android:src="@drawable/google" />
 
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars"
-                    tools:srcCompat="@drawable/facebook" />
+                    android:src="@drawable/facebook" />
 
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars"
-                    tools:srcCompat="@drawable/twitter" />
+                    android:src="@drawable/twitter" />
 
             </LinearLayout>
 
@@ -172,7 +170,7 @@
                 android:textColor="#000000"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/btnLogin"
                 android:layout_width="200dp"
                 android:background="@drawable/button_background"
                 style="@android:style/Widget.Button"
