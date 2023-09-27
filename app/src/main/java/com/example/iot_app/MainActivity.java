@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 
 import android.os.Bundle;
@@ -25,9 +26,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        Để có thể thay đổi nhiều fragment khác nhau nên setContentView bằng getRoot()
         setContentView(binding.getRoot());
+
 //        thực hiện thay thế màn hình Home ngay khi khởi động
 //        new là tạo một fragment mới giống fragment gốc và mọi thay đổi trên new fragment không ảnh hưởng tới fragment góc
         replaceFragment(new HomeFragment());
+
+        setUpViewPager();
+        BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
+
 //      kiểm tra trạng thái mỗi khi nhấn vào item
         binding.bottomNav.setOnItemSelectedListener(item -> {
 //lấy id của item đc nhận vào
@@ -42,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
+    }
+
+    private void setUpViewPager() {
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
 
     }
 
