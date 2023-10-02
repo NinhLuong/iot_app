@@ -7,12 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {
-    private List<Room> mListRoom;
+    public List<Room> mListRoom;
 
     public RoomAdapter(List<Room> mListRoom) {
         this.mListRoom = mListRoom;
@@ -35,6 +37,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         holder.imageAvatar.setImageResource(room.getResourceId());
         holder.txtRoom.setText(room.getRoom());
         holder.txtDevice.setText(room.getDevice());
+
+        // Handle item click
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SecondFragment
+                FragmentManager fragmentManager = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, new DetailFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     @Override
