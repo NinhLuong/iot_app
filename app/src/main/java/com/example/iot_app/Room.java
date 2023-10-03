@@ -1,15 +1,20 @@
 package com.example.iot_app;
 
+import java.util.ArrayList;
+
 public class Room {
     private int resourceId;
     private String room;
     private String device;
+
+    private ArrayList<Device> devices;
 
 //    tạo constructor
     public Room(int resourceId, String room, String device) {
         this.resourceId = resourceId;
         this.room = room;
         this.device = device;
+        this.devices = new ArrayList<>();
     }
 // tạo get set tương ứng
     public int getResourceId() {
@@ -34,5 +39,16 @@ public class Room {
 
     public void setDevice(String device) {
         this.device = device;
+    }
+    public ArrayList<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(ArrayList<Device> devices) {
+        this.devices = devices;
+    }
+
+    public int getDeviceCount() {
+        return devices.size();
     }
 }

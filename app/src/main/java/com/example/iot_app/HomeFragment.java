@@ -3,6 +3,10 @@ package com.example.iot_app;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +59,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView rcvData;
     private RoomAdapter roomAdapter;
-    public List<Room> list = new ArrayList<>();
+    private List<Room> listRoom;
+//    public List<Room> list = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,8 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private SharedViewModel viewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,17 +83,30 @@ public class HomeFragment extends Fragment {
         rcvData = view.findViewById(R.id.rcv_data);
         rcvData.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        viewModel.getRooms().observe(getViewLifecycleOwner(), new Observer<List<Room>>() {
+            @Override
+            public void onChanged(List<Room> rooms) {
+                roomAdapter.setRooms(rooms);
+                roomAdapter.notifyDataSetChanged();
+            }
+        });
+
         // tao OnClickListener cho button
         Button btnAddRoom = view.findViewById(R.id.btnAddRoom);
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // tao mot doi tuong phong khac va them vao list
+
                 Room newRoom = new Room(R.mipmap.ic_launcher, "New Room", "0 device");
-                list.add(newRoom);
+                viewModel.addRoom(newRoom);
+
+                // tao mot doi tuong phong khac va them vao list
+                /*Room newRoom = new Room(R.mipmap.ic_launcher, "New Room", "0 device");
+                listRoom.add(newRoom);
 
                 // thong bao adapter biet dua lieu da bi thay doi
-                roomAdapter.notifyDataSetChanged();
+                roomAdapter.notifyDataSetChanged();*/
             }
         });
 
@@ -95,24 +115,48 @@ public class HomeFragment extends Fragment {
         rcvData.addItemDecoration(itemDecoration);
 
 //        set data trong list len view
-        roomAdapter = new RoomAdapter(getListRoom());
+        roomAdapter = new RoomAdapter(listRoom);
         rcvData.setAdapter(roomAdapter);
+        // Set the click listener for each room item
+        /*roomAdapter.setOnItemClickListener(new RoomAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // Get the selected room
+                Room room = listRoom.get(position);
 
+                // Go to the DetailFragment to display the devices in the room
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                DetailFragment detailFragment = new DetailFragment();
+                // Pass the selected room to the DetailFragment
+                detailFragment.setRoom(room);
+
+                transaction.replace(R.id.frameLayout, detailFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });*/
 
 
         return view;
     }
+    // Add a new room to the list of rooms
+    public void addRoom(Room room) {
+        listRoom.add(room);
+        roomAdapter.notifyDataSetChanged();
+    }
 // them cac phong vao ArrayList
-    public List<Room> getListRoom() {
+/*    public List<Room> getListRoom() {
 //        list = new ArrayList<>();
-        if(list.size() == 0){
-            list.add(new Room(R.mipmap.ic_launcher, "Room 1", "4 device"));
-            list.add(new Room(R.mipmap.ic_launcher, "Room 2", "3 device"));
-            list.add(new Room(R.mipmap.ic_launcher, "Room 3", "5 device"));
+        if(listRoom.size() == 0){
+            listRoom.add(new Room(R.mipmap.ic_launcher, "Room 1", "4 device"));
+            listRoom.add(new Room(R.mipmap.ic_launcher, "Room 2", "3 device"));
+            listRoom.add(new Room(R.mipmap.ic_launcher, "Room 3", "5 device"));
         }
 
-        return list;
-    }
+        return listRoom;
+    }*/
 
 
 }
