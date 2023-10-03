@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,7 +20,18 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-// ActivityMainBinding cho phép người dùng truy cập và tương tác với các view trong file XML
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+        String json = prefs.getString("rooms", "[]");
+
+        SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        viewModel.jsonToRooms(json);
+    }
+
+    // ActivityMainBinding cho phép người dùng truy cập và tương tác với các view trong file XML
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +62,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        String json = viewModel.roomsToJson();
+
+        editor.putString("rooms", json);
+        editor.apply();
     }
 
     private void setUpViewPager() {
