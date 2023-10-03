@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.add_room_layout);
+                dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
                 EditText edtNameRoom = dialog.findViewById(R.id.edtNameRoom);
                 Button btnAdd = dialog.findViewById(R.id.btnAdd);
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment {
                         String name = "";
                         if(!edtNameRoom.getText().toString().equals("")){
                             name = edtNameRoom.getText().toString();
-                            Room newRoom = new Room(R.mipmap.ic_launcher, name , "0 device");
+                            Room newRoom = new Room(R.drawable.barn, name , "0 device");
                             viewModel.addRoom(newRoom);
                             dialog.dismiss();
                         }

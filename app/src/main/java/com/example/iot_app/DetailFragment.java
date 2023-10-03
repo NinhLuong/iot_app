@@ -1,5 +1,6 @@
 package com.example.iot_app;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,30 +68,46 @@ public class DetailFragment extends Fragment {
         rcvDetail.setAdapter(deviceAdapter);
 
         // tao OnClickListener cho button
-        Button btnAddRoom = view.findViewById(R.id.btnAddDevice);
-        btnAddRoom.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton btnAddDevice = view.findViewById(R.id.btnAddDevice);
+        btnAddDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Device newDevice = new Device(R.mipmap.ic_launcher, "New Device", "Info");
-                viewModel.addDeviceToRoom(index, newDevice);
-                deviceAdapter.notifyDataSetChanged();
-                /*// tao mot doi tuong phong khac va them vao list
-                Device newDevice = new Device(R.mipmap.ic_launcher, "New Device", "Info");
-                listDevice.add(newDevice);
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.add_device_layout);
+                dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
-                // Save the devices in the list to the room
-                room.setDevices(listDevice);
+                EditText edtNameRoom = dialog.findViewById(R.id.edtNameDevice);
+                EditText edtInfo = dialog.findViewById(R.id.edtInfo);
+                Button btnAddDevice = dialog.findViewById(R.id.btnAddDevice);
 
-                // thong bao adapter biet dua lieu da bi thay doi
-                deviceAdapter.notifyDataSetChanged();*/
+
+                btnAddDevice.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name_device = "", info = "";
+                        if(!edtNameRoom.getText().toString().equals("") && !edtInfo.getText().toString().equals("")){
+                            name_device = edtNameRoom.getText().toString();
+                            info = edtInfo.getText().toString();
+                            Device newDevice = new Device(R.drawable.sensor, name_device, info);
+                            viewModel.addDeviceToRoom(index, newDevice);
+                            deviceAdapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Hãy nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+                });
+
+                dialog.show();
+
             }
         });
         return view;
     }
-/*    private void loadDevices() {
-        // Load the devices from the selected room
-        listDevice = room.getDevices();
-    }*/
+
     // them cac thiet bi vao ArrayList
     /*private List<Device> getListDevice() {
 //         list = new ArrayList<>();

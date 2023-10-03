@@ -79,7 +79,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                         }
                     })
                     .setNegativeButton(android.R.string.cancel, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(android.R.drawable.ic_menu_delete)
                     .show();
 
             return true;

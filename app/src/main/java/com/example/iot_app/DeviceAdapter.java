@@ -38,6 +38,8 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         holder.txtName.setText(device.getDevice());
         holder.txtDetail.setText(device.getDetail());
 
+
+
         // Handle item long click
         holder.itemView.setOnLongClickListener(v -> {
             int currentPosition = holder.getBindingAdapterPosition();
@@ -54,7 +56,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
                         }
                     })
                     .setNegativeButton(android.R.string.cancel, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(android.R.drawable.ic_menu_delete)
                     .show();
 
             return true;
