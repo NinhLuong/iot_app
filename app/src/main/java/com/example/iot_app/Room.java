@@ -7,6 +7,16 @@ public class Room {
     private String room;
     private String device;
 
+    public String getName_room() {
+        return name_room;
+    }
+
+    public void setName_room(String name_room) {
+        this.name_room = name_room;
+    }
+
+    private String name_room;
+
     private ArrayList<Device> devices;
 
 //    tạo constructor

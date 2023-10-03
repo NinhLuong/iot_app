@@ -1,5 +1,6 @@
 package com.example.iot_app;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,62 +16,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public HomeFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     private RecyclerView rcvData;
     private RoomAdapter roomAdapter;
     private List<Room> listRoom;
 //    public List<Room> list = new ArrayList<>();
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-    }
 
     private SharedViewModel viewModel;
 
@@ -93,20 +56,36 @@ public class HomeFragment extends Fragment {
         });
 
         // tao OnClickListener cho button
-        Button btnAddRoom = view.findViewById(R.id.btnAddRoom);
+        FloatingActionButton btnAddRoom = view.findViewById(R.id.btnAddRoom);
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.add_room_layout);
 
-                Room newRoom = new Room(R.mipmap.ic_launcher, "New Room", "0 device");
-                viewModel.addRoom(newRoom);
+                EditText edtNameRoom = dialog.findViewById(R.id.edtNameRoom);
+                Button btnAdd = dialog.findViewById(R.id.btnAdd);
 
-                // tao mot doi tuong phong khac va them vao list
-                /*Room newRoom = new Room(R.mipmap.ic_launcher, "New Room", "0 device");
-                listRoom.add(newRoom);
 
-                // thong bao adapter biet dua lieu da bi thay doi
-                roomAdapter.notifyDataSetChanged();*/
+                btnAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = "";
+                        if(!edtNameRoom.getText().toString().equals("")){
+                            name = edtNameRoom.getText().toString();
+                            Room newRoom = new Room(R.mipmap.ic_launcher, name , "0 device");
+                            viewModel.addRoom(newRoom);
+                            dialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Hãy nhập tên của phòng!", Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -117,27 +96,6 @@ public class HomeFragment extends Fragment {
 //        set data trong list len view
         roomAdapter = new RoomAdapter(listRoom);
         rcvData.setAdapter(roomAdapter);
-        // Set the click listener for each room item
-        /*roomAdapter.setOnItemClickListener(new RoomAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // Get the selected room
-                Room room = listRoom.get(position);
-
-                // Go to the DetailFragment to display the devices in the room
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-                DetailFragment detailFragment = new DetailFragment();
-                // Pass the selected room to the DetailFragment
-                detailFragment.setRoom(room);
-
-                transaction.replace(R.id.frameLayout, detailFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });*/
-
 
         return view;
     }
