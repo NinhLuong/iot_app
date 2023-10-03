@@ -1,5 +1,6 @@
 package com.example.iot_app;
 
+import android.content.DialogInterface;
 import android.os.Binder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,18 +28,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     public void setRooms(List<Room> rooms) {
         this.mListRoom = rooms;
     }
-    /*private OnItemClickListener listener;
-
-    // Define the listener interface
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
-    // Define the method that allows the parent activity or fragment to define the listener
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }*/
-
 
     @NonNull
     @Override
@@ -72,6 +62,29 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                     .addToBackStack(null)
                     .commit();
         });
+
+        // Handle item long click
+        holder.itemView.setOnLongClickListener(v -> {
+            int currentPosition = holder.getBindingAdapterPosition();
+            new AlertDialog.Builder(v.getContext())
+                    .setTitle("Delete Room")
+                    .setMessage("Are you sure you want to delete this room?")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Delete the room
+                            if (currentPosition != RecyclerView.NO_POSITION) {
+                                mListRoom.remove(currentPosition);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+            return true;
+        });
+
     }
 
     @Override
@@ -98,11 +111,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    /*public class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
 
-            /*itemView.setOnClickListener(new View.OnClickListener() {
+            *//*itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
@@ -112,7 +125,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                         }
                     }
                 }
-            });*/
+            });*//*
         }
-    }
+    }*/
 }
