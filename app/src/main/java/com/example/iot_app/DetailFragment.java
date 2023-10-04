@@ -3,6 +3,8 @@ package com.example.iot_app;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,29 +24,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailFragment extends Fragment {
-
-
-
     public DetailFragment() {
         // Required empty public constructor
     }
-
 
     private RecyclerView rcvDetail;
     private DeviceAdapter deviceAdapter;
 //    private ArrayList<Device> listDevice;
     private SharedViewModel viewModel;
     private Room room;
-/*    public void setRoom(Room room) {
-        this.room = room;
-        loadDevices();
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String roomName = getArguments().getString("roomName");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(roomName);
+
         int index = getArguments().getInt("index");
 
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -108,15 +109,4 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
-    // them cac thiet bi vao ArrayList
-    /*private List<Device> getListDevice() {
-//         list = new ArrayList<>();
-        if(list.size() == 0){
-            list.add(new Device(R.mipmap.ic_launcher, "Nhiệt độ ", "30c"));
-            list.add(new Device(R.mipmap.ic_launcher, "Độ ẩm", "89"));
-            list.add(new Device(R.mipmap.ic_launcher, "Quạt", "50"));
-        }
-
-        return list;
-    }*/
 }

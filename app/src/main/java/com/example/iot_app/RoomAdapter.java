@@ -55,6 +55,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             Bundle bundle = new Bundle();
             bundle.putInt("index", position);
             detailFragment.setArguments(bundle);
+            bundle.putString("roomName", room.getRoom());
+            detailFragment.setArguments(bundle);
 
             FragmentManager fragmentManager = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
             fragmentManager.beginTransaction()
