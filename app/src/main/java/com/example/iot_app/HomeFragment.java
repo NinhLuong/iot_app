@@ -112,7 +112,6 @@ public class HomeFragment extends Fragment {
                             Toast.makeText(getContext(), "Hãy nhập tên của phòng!", Toast.LENGTH_LONG).show();
                         }
 
-
                     }
                 });
 

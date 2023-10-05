@@ -57,6 +57,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
         // Set an OnClickListener on itemView in the holder.
         // This listener gets notified when itemView is clicked or tapped.
+
         holder.itemView.setOnClickListener(v -> {
             DetailFragment detailFragment = new DetailFragment();
             // Create a new instance of DetailFragment.
