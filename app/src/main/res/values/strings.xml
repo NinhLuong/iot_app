@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">iot_app</string>
     <string name="action_home">Home</string>
+    <string name="enter_otp_here">Enter your OTP here</string>
     <string name="action_web">Web</string>
     <string name="action_account">Account</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,7 +30,7 @@
     <string name="lbl_login">Login</string>
     <string name="lbl_new_password">New password</string>
     <string name="lbl_explore_the_app">Explore the app</string>
-    <string name="msg_must_be_8_chara">must be 8 characters</string>
+    <string name="msg_must_be_8_chara">Must be at least 8 characters</string>
     <string name="msg_confirm_new_pas">Confirm new password</string>
     <string name="msg_already_have_an2">Already have an account? </string>
     <string name="msg_already_have_an3">Already have an account? Log in</string>

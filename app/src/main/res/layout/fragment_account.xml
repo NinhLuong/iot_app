@@ -38,20 +38,43 @@
                 app:srcCompat="@drawable/top_background" />
 
 
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearRowarrowleft"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="Account "
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btnArrowleft"
+                    android:layout_width="@dimen/_50pxh"
+                    android:layout_height="@dimen/_50pxh"
+                    android:background="@drawable/rectangle_bg_bluegray_100_0f_border_gray_300_radius_25"
+                    android:paddingHorizontal="@dimen/_18pxh"
+                    android:paddingVertical="@dimen/_18pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowleft"
+                    tools:ignore="ContentDescription"
+                    android:contentDescription="Left Arrow"/>
+
+                <TextView
+                    android:id="@+id/txtAccount"
+                    android:layout_width="242dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="@dimen/_10pxv"
+                    android:layout_weight="0.63"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    tools:text="@string/lbl_account" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout"

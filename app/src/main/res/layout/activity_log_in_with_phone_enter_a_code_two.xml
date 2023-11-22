@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/_11pxv"
             android:layout_width="match_parent"
             style="@style/txtInterregular16_1" tools:text="@string/msg_we_ve_sent_an_s"/>
-        <com.mukesh.OtpView android:focusableInTouchMode="true"
+        <com.mukeshsolanki.OtpView android:focusableInTouchMode="true"
             android:id="@+id/otpViewOtpview" android:inputType="number"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
