@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_nav">#0B182B</color>
@@ -25,5 +25,17 @@
     <color name="white_A700">#ffffff</color>
     <color name="red_A700">#ff0000</color>
 
+    <color name="color_button_1">#9659D4</color>
+    <color name="color_button_2">#7054FF</color>
+    <color name="color_button_3">#6EADFC</color>
+    <color name="color_button_4">#61D1EB</color>
+    <color name="color_button_5">#6FB86D</color>
+    <color name="color_button_6">#FFF35C</color>
+    <color name="color_button_7">#FCAE39</color>
+    <color name="color_button_8">#FF427D</color>
+    <color name="color_button_9">#FF4C4B</color>
+    <color name="color_button_10">#EFF0FB</color>
 
+    <color name="color_temp">#6C5DD2</color>
+    <color name="bg_switch">#C9CED7</color>
 </resources>
