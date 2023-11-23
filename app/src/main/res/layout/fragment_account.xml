@@ -132,6 +132,84 @@
             android:layout_marginEnd="40sp"
             android:background="@drawable/white_top_buttons">
 
+            <LinearLayout
+                android:id="@+id/linearPower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearRowemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_7pxh"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        style="@style/txtNotoSansbold18"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2pxv"
+                        android:layout_width="wrap_content"
+                        android:ellipsize="end"
+                        tools:text="@string/lbl_email" />
+
+                    <TextView
+                        android:id="@+id/txtEmailOne"
+                        style="@style/txtNotoSansnotosansmedium18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        tools:text="luongvuhaininh123@gmail" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRowsinthoi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_1pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_marginEnd="@dimen/_2pxh"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtSinthoi"
+                        style="@style/txtNotoSansbold18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        tools:text="Phone:" />
+
+                    <TextView
+                        android:id="@+id/txtLanguage"
+                        style="@style/txtNotoSansnotosansmedium18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        tools:text="0824451334" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnChangePass"
+                android:layout_width="204dp"
+                android:layout_height="61dp"
+                android:layout_marginBottom="10dp"
+                android:text="Change Password"
+                app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/btnLogout"
@@ -141,7 +219,6 @@
                 android:text="Logout"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
