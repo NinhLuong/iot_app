@@ -49,7 +49,7 @@
                     android:id="@+id/textUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="UserName"
+                    android:text="Username"
                     android:textSize="18sp"
                     android:textColor="#6C5DD2"/>
 
@@ -60,7 +60,7 @@
                     android:background="@drawable/background_edit"
                     android:ems="10"
                     android:inputType="text"
-                    android:hint="Enter Your UserName"
+                    android:hint="Enter Your Username"
                     android:textColorHint="#707070"
                     android:gravity="center"
                     android:textColor="#707070"
