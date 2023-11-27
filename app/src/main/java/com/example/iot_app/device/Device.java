@@ -1,4 +1,4 @@
-package com.example.iot_app;
+package com.example.iot_app.device;
 
 public class Device {
     // This is a public class named Device.

@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".sign_in.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -193,7 +193,7 @@
                     android:background="@drawable/background_edit"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Enter Your Date"
+                    android:hint="dd/mm/yyyy"
                     android:inputType="textPassword"
                     android:textColor="#707070"
                     android:textColorHint="#707070"
@@ -201,7 +201,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/btnSignup"
                 style="@android:style/Widget.Button"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -214,15 +214,35 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView7"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32sp"
-                android:text="Arealdy have an anccount? Login"
-                android:textAlignment="center"
-                android:textColor="#000000" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Arealdy have an anccount?"
+                    android:textAlignment="center"
+                    android:textColor="#000000" />
 
-        </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnlogin"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/button_background"
+                    style="@android:style/Widget.Button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Login" />
+            </LinearLayout>
+            </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

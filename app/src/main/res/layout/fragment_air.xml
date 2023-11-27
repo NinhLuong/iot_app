@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F3F5F8"
-    tools:context=".LampFragment">
+    tools:context=".device.LampFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

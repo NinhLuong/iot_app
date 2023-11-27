@@ -1,7 +1,6 @@
-package com.example.iot_app;
+package com.example.iot_app.home_page;
 
 import android.content.DialogInterface;
-import android.os.Binder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.iot_app.device.DetailFragment;
+import com.example.iot_app.R;
+
 import java.util.List;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {

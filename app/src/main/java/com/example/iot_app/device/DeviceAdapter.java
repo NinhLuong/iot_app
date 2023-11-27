@@ -1,4 +1,4 @@
-package com.example.iot_app;
+package com.example.iot_app.device;
 
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.iot_app.R;
 
 import java.util.List;
 

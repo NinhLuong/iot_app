@@ -1,4 +1,6 @@
-package com.example.iot_app;
+package com.example.iot_app.home_page;
+
+import com.example.iot_app.device.Device;
 
 import java.util.ArrayList;
 

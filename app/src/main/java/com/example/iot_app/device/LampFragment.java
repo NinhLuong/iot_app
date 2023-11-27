@@ -1,4 +1,4 @@
-package com.example.iot_app;
+package com.example.iot_app.device;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import com.example.iot_app.R;
 
 public class LampFragment extends Fragment {
 

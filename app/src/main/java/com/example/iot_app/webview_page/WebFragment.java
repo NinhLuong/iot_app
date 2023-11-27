@@ -1,4 +1,4 @@
-package com.example.iot_app;
+package com.example.iot_app.webview_page;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.iot_app.R;
+import com.example.iot_app.device.AirFragment;
+import com.example.iot_app.device.LampFragment;
 
 public class WebFragment extends Fragment {
 

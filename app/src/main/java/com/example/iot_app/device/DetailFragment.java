@@ -1,8 +1,9 @@
-package com.example.iot_app;
+package com.example.iot_app.device;
 
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.iot_app.R;
+import com.example.iot_app.SharedViewModel;
+import com.example.iot_app.home_page.Room;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -38,12 +42,12 @@ public class DetailFragment extends Fragment {
     // A private variable for a Room object.
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_edit, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_edit) {
             showEditDialog();
             return true;

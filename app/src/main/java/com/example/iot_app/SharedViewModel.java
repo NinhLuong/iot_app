@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.iot_app.device.Device;
+import com.example.iot_app.home_page.Room;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
