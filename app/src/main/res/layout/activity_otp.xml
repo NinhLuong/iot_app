@@ -38,26 +38,32 @@
             android:layout_marginTop="@dimen/_11pxv"
             android:layout_width="match_parent"
             style="@style/txtInterregular16_1" tools:text="@string/msg_we_ve_sent_an_s"/>
-        <com.mukeshsolanki.OtpView android:focusableInTouchMode="true"
-            android:id="@+id/otpViewOtpview" android:inputType="number"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_15pxh"
-            android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_25pxv"
+
+        <com.mukeshsolanki.OtpView
+            android:id="@+id/otpViewOtpview"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginTop="@dimen/_40pxv"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:focusableInTouchMode="true"
+            android:hint="@string/enter_otp_here"
+            android:inputType="number"
             android:textColor="@color/black_900"
-            android:textSize="@dimen/_32pxh" app:OtpItemCount="4"
+            android:textSize="@dimen/_32pxh"
+            app:OtpItemCount="4"
             app:OtpItemHeight="@dimen/_77pxv"
             app:OtpItemSpacing="@dimen/_15pxh"
             app:OtpItemWidth="@dimen/_77pxh"
-            android:hint="@string/enter_otp_here"
-            app:OtpLineColor="@color/bluegray_100" app:OtpViewType="rectangle"/>
+            app:OtpLineColor="@color/bluegray_100"
+            app:OtpViewType="rectangle" />
+
         <LinearLayout android:gravity="center_vertical"
             android:id="@+id/linearRowididntreceiv"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_15pxh"
-            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_27pxh"
             android:layout_marginTop="@dimen/_83pxv"
             android:layout_width="match_parent" android:orientation="horizontal">
             <TextView android:ellipsize="end"
@@ -82,7 +88,7 @@
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_15pxh"
             android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_33pxv" android:layout_width="@dimen/_353pxh">
+            android:layout_marginTop="@dimen/_80pxv" android:layout_width="@dimen/_353pxh">
             <TextView android:ellipsize="end"
                 android:id="@+id/txtVerify"
                 android:layout_gravity="top|center"
