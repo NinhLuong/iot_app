@@ -56,32 +56,6 @@ public class LoginActivity extends AppCompatActivity {
 //        initView();
     }
 
-    /*private void initView() {
-
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                khi nhập mật khẩu và tên đúng
-                if(userEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please fill your user and password",Toast.LENGTH_LONG).show();
-                } else if (userEdt.getText().toString().equals("haininh") && passwordEdt.getText().toString().equals("03122002")) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else{
-                    Toast.makeText(LoginActivity.this, "Password or username is wrong",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                    startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-            }
-        });
-
-    };
-*/
     public Boolean validateUsername() {
         String val = loginUsername.getText().toString();
         if (val.isEmpty()) {
