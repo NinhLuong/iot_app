@@ -9,7 +9,8 @@
         android:id="@+id/linearLogInwithpho"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
         <ImageButton
             android:background="@drawable/rectangle_bg_bluegray_100_0f_border_gray_300_radius_25"
             android:id="@+id/btnArrowleft"
@@ -22,24 +23,30 @@
             android:paddingVertical="@dimen/_18pxv"
             android:scaleType="fitCenter"
             android:contentDescription = "Back"
-            android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
-        <TextView android:ellipsize="end" android:id="@+id/txtEntercode"
+            android:src="@drawable/img_arrowleft"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/txtEntercode"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_27pxh"
             android:layout_marginStart="@dimen/_27pxh"
             android:layout_marginTop="@dimen/_47pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"
-            style="@style/txtPoppinsbold30" tools:text="@string/lbl_enter_code"/>
-        <TextView android:id="@+id/txtWevesentanS"
+            style="@style/txtPoppinsbold30"
+            tools:text="Enter code"/>
+
+        <TextView android:id="@+id/txtSentSms"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_27pxh"
             android:layout_marginStart="@dimen/_27pxh"
             android:layout_marginTop="@dimen/_11pxv"
             android:layout_width="match_parent"
-            style="@style/txtInterregular16_1" tools:text="@string/msg_we_ve_sent_an_s"/>
+            style="@style/txtInterregular16_1"
+            tools:text="@string/msg_we_ve_sent_an_s"/>
 
-        <com.mukeshsolanki.OtpView
+        <com.chaos.view.PinView
             android:id="@+id/otpViewOtpview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,43 +59,40 @@
             android:inputType="number"
             android:textColor="@color/black_900"
             android:textSize="@dimen/_32pxh"
-            app:OtpItemCount="4"
-            app:OtpItemHeight="@dimen/_77pxv"
-            app:OtpItemSpacing="@dimen/_15pxh"
-            app:OtpItemWidth="@dimen/_77pxh"
-            app:OtpLineColor="@color/bluegray_100"
-            app:OtpViewType="rectangle" />
+            app:itemCount="6"
+            app:itemHeight="50dp"
+            app:itemRadius="5dp"
+            app:itemWidth="50dp"
+            app:lineWidth="1dp"/>
 
-        <LinearLayout android:gravity="center_vertical"
-            android:id="@+id/linearRowididntreceiv"
+        <TextView
+            android:id="@+id/txtResend"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_15pxh"
-            android:layout_marginStart="@dimen/_27pxh"
-            android:layout_marginTop="@dimen/_83pxv"
-            android:layout_width="match_parent" android:orientation="horizontal">
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtIdidntreceiv"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_weight="0.74" android:layout_width="0dp"
-                android:singleLine="true"
-                style="@style/txtInterregular16_1" tools:text="@string/msg_i_didn_t_receiv"/>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtResend"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_weight="0.26" android:layout_width="0dp"
-                android:singleLine="true"
-                style="@style/txtIntersemibold16_1" tools:text="@string/lbl_resend"/>
-        </LinearLayout>
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_40pxv"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            style="@style/txtIntersemibold16_1"
+            tools:text="@string/lbl_resend"/>
+
+
+        <ProgressBar
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:indeterminateTint="@color/deep_purple_400"
+            android:layout_gravity="center"
+            android:id="@+id/login_progress_bar"/>
+
         <FrameLayout android:id="@+id/frameStackverify"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_56pxv"
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_15pxh"
             android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_80pxv" android:layout_width="@dimen/_353pxh">
+            android:layout_marginTop="@dimen/_50pxv" android:layout_width="@dimen/_353pxh">
             <TextView android:ellipsize="end"
                 android:id="@+id/txtVerify"
                 android:layout_gravity="top|center"
@@ -101,19 +105,17 @@
                 android:singleLine="true"
                 style="@style/txtIntersemibold16" tools:text="@string/lbl_verify"/>
             <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end" android:gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
                 android:id="@+id/btnVerifyOne"
-                android:layout_gravity="start"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingBottom="@dimen/_18pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_18pxv"
                 android:singleLine="true"
                 android:text="@string/lbl_verify"
                 android:textAllCaps="false"
-                style="@style/btnSolidRounded_1" tools:text="@string/lbl_verify"/>
+                style="@style/btnSolidRounded_1"
+                tools:text="@string/lbl_verify"/>
         </FrameLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

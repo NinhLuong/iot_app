@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.iot_app"
-        minSdk = 29
+        minSdk = 27
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,6 +75,7 @@ dependencies {
     implementation("com.google.firebase:firebase-config:21.6.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
+    implementation ("io.github.chaosleung:pinview:1.4.4")
     implementation ("com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0")
     implementation ("com.github.mukeshsolanki.android-otpview-pinview:otpview-compose:3.1.0")
 

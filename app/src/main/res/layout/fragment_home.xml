@@ -36,6 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/userName"
             android:text="Hi, Drax"
             android:textColor="@color/black"
             android:textSize="24dp"
@@ -70,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="19dp"
-            android:layout_marginVertical="22dp">
+            android:layout_marginVertical="20dp">
 
             <ImageView
                 android:id="@+id/ic_weather"
@@ -82,8 +83,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
                 android:src="@drawable/line_1" />
 
             <LinearLayout
@@ -98,7 +99,7 @@
                     android:layout_marginBottom="7dp"
                     android:text="15 Otober 2023"
                     android:textColor="#D1CCF2"
-                    android:textSize="13dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -125,14 +126,14 @@
                             android:layout_height="wrap_content"
                             android:text="Temperature"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="15dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -149,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:text="Humidity"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -161,7 +162,7 @@
                     android:layout_marginTop="7dp"
                     android:text="Khu A, SPKT TP.HCM"
                     android:textColor="#D1CCF2"
-                    android:textSize="10dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

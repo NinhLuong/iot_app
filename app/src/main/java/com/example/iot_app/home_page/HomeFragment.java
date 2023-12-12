@@ -1,5 +1,7 @@
 package com.example.iot_app.home_page;
 
+import static android.content.Intent.getIntent;
+
 import android.app.Dialog;
 import android.os.Bundle;
 
@@ -15,11 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iot_app.R;
 import com.example.iot_app.SharedViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -37,6 +42,10 @@ public class HomeFragment extends Fragment {
     // A private variable for a list of Room objects.
 
     private SharedViewModel viewModel;
+    private TextView userName;
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    String username;
     // A private variable for SharedViewModel, which stores and manages UI-related data in a lifecycle conscious way.
 
     // This method is called to have the fragment instantiate its user interface view.
@@ -49,8 +58,15 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            username = bundle.getString("username");
+            // Sử dụng username
+        }
 
+        userName = view.findViewById(R.id.userName);
         rcvData = view.findViewById(R.id.rcv_data);
+        userName.setText("Hi, " + username);
         // Find a view that was identified by the 'rcv_data' id attribute in XML layout file and assign it to 'rcvData'.
         rcvData.setLayoutManager(new LinearLayoutManager(getActivity()));
         // Set 'rcvData' to use a linear layout manager (which arranges its children in a single column).

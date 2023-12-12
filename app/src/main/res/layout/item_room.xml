@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginStart="25dp"
     android:layout_marginEnd="25dp"
+    android:orientation="vertical"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/img_avatar"
-        android:layout_width="79dp"
-        android:layout_height="61dp"
-        android:src="@drawable/barn" />
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:src="@drawable/cold_storage" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_toEndOf="@+id/img_avatar">
 
         <TextView
             android:id="@+id/txt_room"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Room"
@@ -30,7 +31,7 @@
 
         <TextView
             android:id="@+id/txt_device"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="4 device"
@@ -39,4 +40,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

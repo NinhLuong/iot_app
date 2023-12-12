@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.iot_app.MainActivity;
 import com.example.iot_app.R;
+import com.example.iot_app.home_page.HomeFragment;
 import com.example.iot_app.sign_up.SignUpActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -93,6 +94,11 @@ public class LoginActivity extends AppCompatActivity {
                         String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
                         String usernameFromDB = snapshot.child(userUsername).child("username").getValue(String.class);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("username", usernameFromDB);
+                        HomeFragment homeFragment = new HomeFragment();
+                        homeFragment.setArguments(bundle);
 
                         intent.putExtra("username", usernameFromDB);
                         intent.putExtra("email", emailFromDB);
