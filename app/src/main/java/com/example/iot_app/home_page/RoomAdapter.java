@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iot_app.device.DetailFragment;
 import com.example.iot_app.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -55,6 +57,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         // Create a string that represents number of devices in 'room'.
         String deviceText = room.getDeviceCount() + " device(s)";
         holder.txtDevice.setText(deviceText);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("rooms");
 
         // Set an OnClickListener on itemView in the holder.
         // This listener gets notified when itemView is clicked or tapped.
@@ -94,8 +98,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
             // Create a builder for an alert dialog that uses default alert dialog theme.
             new AlertDialog.Builder(v.getContext())
-                    .setTitle("Delete Room") // Set title text for dialog.
-                    .setMessage("Are you sure you want to delete this room?") // Set message text for dialog.
+                    .setTitle("Delete Area") // Set title text for dialog.
+                    .setMessage("Are you sure you want to delete this area?") // Set message text for dialog.
                     // Add positive button to dialog with text "OK" and click listener.
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         // This method is called when positive button is clicked.
@@ -105,6 +109,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                             if (currentPosition != RecyclerView.NO_POSITION) {
                                 // Remove the room at 'currentPosition' from mListRoom.
                                 mListRoom.remove(currentPosition);
+                                myRef.child(room.getRoom()).removeValue();
                                 notifyDataSetChanged();
                                 // Notify RoomAdapter that underlying data has changed and it should refresh itself.
                             }

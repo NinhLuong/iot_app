@@ -10,6 +10,9 @@ public class Room {
     private String room;
     private String device;
     // A private variable for a list of Device objects.
+    private String temp;
+    private String hum;
+
 
     private ArrayList<Device> devices;
 
@@ -45,15 +48,29 @@ public class Room {
     public void setDevice(String device) {
         this.device = device;
     }
-    // This is a getter method for devices. It returns the list of Device objects of this Room object.
+
+    public String getTemp() {
+        return this.temp;
+    }
+
+    public String getHum() {
+        return this.hum;
+    }
+
+    public void setTemp(final String temp) {
+        this.temp = temp;
+    }
+
+    public void setHum(final String hum) {
+        this.hum = hum;
+    }
+
     public ArrayList<Device> getDevices() {
         return devices;
     }
-    // This is a setter method for devices. It sets the list of Device objects of this Room object.
     public void setDevices(ArrayList<Device> devices) {
         this.devices = devices;
     }
-    // This is a getter method for the size of devices. It returns the number of Device objects in this Room object.
     public int getDeviceCount() {
         return devices.size();
     }

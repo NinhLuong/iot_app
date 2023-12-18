@@ -1,20 +1,33 @@
 package com.example.iot_app.device;
 
+import com.example.iot_app.device_room.DeviceRoom;
+
+import java.util.ArrayList;
+
 public class Device {
-    // This is a public class named Device.
     private int idDevice;
     private String device;
     private String detail;
+    private String category;
 
-    // This is a public constructor for Device.
-    // It initializes a new Device object with device ID, device name, and device detail.
-    public Device(int idDevice, String device, String detail) {
+    private boolean swithStatus;
+
+    private ArrayList<DeviceRoom> deviceRoomArrayList;
+    public Device(int idDevice, String device, String detail, boolean swithStatus, String category) {
         this.idDevice = idDevice;
         this.device = device;
         this.detail = detail;
+        this.swithStatus = swithStatus;
+        this.category = category;
+        this.deviceRoomArrayList = new ArrayList<>();
+    }
+    public boolean isSwithStatus() {
+        return this.swithStatus;
     }
 
-    // create getter setter
+    public void setSwithStatus(final boolean swithStatus) {
+        this.swithStatus = swithStatus;
+    }
 
     public int getIdDevice() {
         return idDevice;
@@ -38,6 +51,26 @@ public class Device {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public ArrayList<DeviceRoom> getDeviceRoomArrayList() {
+        return deviceRoomArrayList;
+    }
+
+    public void setDeviceRoomArrayList(final ArrayList<DeviceRoom> deviceRoomArrayList) {
+        this.deviceRoomArrayList = deviceRoomArrayList;
+    }
+
+    public void setCategory(final String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public int getDeviceCount() {
+        return deviceRoomArrayList.size();
     }
 }
 

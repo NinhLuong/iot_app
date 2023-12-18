@@ -2,9 +2,11 @@ package com.example.iot_app.sign_in;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 //    khai báo kiểu class của các biến
     EditText loginUsername, loginPassword;
     private Button loginBtn, signupBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         String userPassword = loginPassword.getText().toString().trim();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
+
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -95,15 +99,19 @@ public class LoginActivity extends AppCompatActivity {
                         String usernameFromDB = snapshot.child(userUsername).child("username").getValue(String.class);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("username", usernameFromDB);
-                        HomeFragment homeFragment = new HomeFragment();
-                        homeFragment.setArguments(bundle);
 
+                        intent.putExtra("username", userUsername);
+
+
+                        /*Bundle bundle1 = new Bundle();
+                        Log.d("username0",userUsername);
+                        bundle1.putString("username", userUsername);
+
+                        intent.putExtras (bundle1);
                         intent.putExtra("username", usernameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("Phone", phoneFromDB);
-                        intent.putExtra("password", passwordFromDB);
+                        intent.putExtra("password", passwordFromDB);*/
                         startActivity(intent);
                     } else {
                         loginPassword.setError("Invalid Credentials");
@@ -120,4 +128,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

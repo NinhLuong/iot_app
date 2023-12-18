@@ -1,15 +1,12 @@
 package com.example.iot_app.home_page;
 
-import static android.content.Intent.getIntent;
-
 import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -20,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.iot_app.MainActivity;
 import com.example.iot_app.R;
 import com.example.iot_app.SharedViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,44 +35,39 @@ public class HomeFragment extends Fragment {
     private RecyclerView rcvData;
     // A private variable for RecyclerView, which lets you display data in a scrolling list.
     private RoomAdapter roomAdapter;
+
     // A private variable for RoomAdapter, which binds data to views that are displayed within a RecyclerView.
     private List<Room> listRoom;
     // A private variable for a list of Room objects.
 
+    private MainActivity mainActivity;
+
     private SharedViewModel viewModel;
     private TextView userName;
-    FirebaseDatabase database;
-    DatabaseReference reference;
-    String username;
-    // A private variable for SharedViewModel, which stores and manages UI-related data in a lifecycle conscious way.
 
-    // This method is called to have the fragment instantiate its user interface view.
-    // It returns a View that is the root of your fragment's layout. It has three parameters:
-    // LayoutInflater (which can be used to inflate any views in the fragment),
-    // ViewGroup (which is the parent view that the fragment's UI should be attached to)
-    // Bundle (which contains this fragment's previous saved state, if any).
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            username = bundle.getString("username");
-            // Sử dụng username
-        }
+
+        mainActivity = (MainActivity) getActivity();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("rooms");
 
         userName = view.findViewById(R.id.userName);
         rcvData = view.findViewById(R.id.rcv_data);
-        userName.setText("Hi, " + username);
+//        userName.setText("Hi, " + username);
+        userName.setText("Hi, " + mainActivity.getGusername());
         // Find a view that was identified by the 'rcv_data' id attribute in XML layout file and assign it to 'rcvData'.
-        rcvData.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        rcvData.setLayoutManager(gridLayoutManager);
         // Set 'rcvData' to use a linear layout manager (which arranges its children in a single column).
         //    Create a new DividerItemDecoration with current context and vertical orientation.
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
-        rcvData.addItemDecoration(itemDecoration);
 
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+//        viewModel.loadData(getContext());
         // Get an instance of SharedViewModel associated with this activity.
 
         // Observe changes to list of rooms in SharedViewModel.
@@ -100,12 +93,12 @@ public class HomeFragment extends Fragment {
                 // Create a new dialog instance with current context.
                 Dialog dialog = new Dialog(getContext());
                 // Set the content view of this dialog. The layout resource is 'add_room_layout'.
-                dialog.setContentView(R.layout.add_room_layout);
+                dialog.setContentView(R.layout.add_area_layout);
                 dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
                 // Set the background of this dialog window using a drawable resource.
 
-                EditText edtNameRoom = dialog.findViewById(R.id.edtNameRoom);
-                Button btnAdd = dialog.findViewById(R.id.btnAdd);
+                EditText edtNameRoom = dialog.findViewById(R.id.edtNameArea);
+                Button btnAdd = dialog.findViewById(R.id.btnAddArea);
 
 // Set an OnClickListener on 'btnAdd'. This listener gets notified when 'btnAdd' is clicked or tapped.
                 btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -116,11 +109,13 @@ public class HomeFragment extends Fragment {
                         if(!edtNameRoom.getText().toString().equals("")){
                             name = edtNameRoom.getText().toString();
                             //Assign the text in 'edtNameRoom' to 'name'.
-                            Room newRoom = new Room(R.drawable.barn, name , "0 device");
+                            Room newRoom = new Room(R.drawable.cold_storage, name , "0 device");
                             // Create a new Room object with default image, name from 'edtNameRoom', and "0 device".
-
+                            myRef.child(name).child("Temp").setValue("");
+                            myRef.child(name).child("Hum").setValue("");
                             viewModel.addRoom(newRoom);
                             // Add the new room to SharedViewModel.
+//                            viewModel.saveData(getContext());
                             dialog.dismiss();
                         }
                         else {

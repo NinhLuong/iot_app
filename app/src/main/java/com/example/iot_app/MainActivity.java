@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     // This is a binding object for the activity to use in order to interact with the views defined in the XML layout files.
+    String gusername;
 
     @Override
     protected void onStart() {
@@ -28,11 +29,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
         // Retrieve a String value from the preferences.
         String json = prefs.getString("rooms", "[]");
+//        String json1 = prefs.getString("devices", "[]");
 
         SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
         // Get a ViewModelProvider, which retains ViewModels while a scope (an activity or a fragment) is alive. Then get the SharedViewModel class from the ViewModelProvider.
         viewModel.jsonToRooms(json);
+//        viewModel.jsonToRoomsArea(json1);
         // Convert the JSON string back to rooms using a method in the ViewModel.
+    }
+    public String getGusername() {
+        return this.gusername;
     }
 
     // ActivityMainBinding cho phép người dùng truy cập và tương tác với các view trong file XML
@@ -45,7 +51,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         // Set the root view for this activity.
 
-
+        String username = getIntent().getStringExtra("username");
+        gusername = username;
+        /*HomeFragment homeFragment = new HomeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username);
+        homeFragment.setArguments(bundle);
+*/
 // Replace the current fragment with a new instance of HomeFragment.
         replaceFragment(new HomeFragment());
 
@@ -87,8 +99,10 @@ public class MainActivity extends AppCompatActivity {
         SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
         // Convert rooms to JSON string using a method in ViewModel.
         String json = viewModel.roomsToJson();
+//        String json1 = viewModel.roomsAreaToJson();
 
         editor.putString("rooms", json);
+//        editor.putString("devices", json1);
         // Set a String value in the preferences editor, to be written back once commit() or apply() are called.
         editor.apply();
         // Commit your preferences changes back from this Editor to the SharedPreferences object it is editing. This atomically performs the requested modifications, replacing whatever is currently in the SharedPreferences.
@@ -113,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         // Create an instance of ViewPagerAdapter.
 
     }
-
     // Method to replace current fragment with new one.
     private void replaceFragment(Fragment fragment){
 // Get an instance of FragmentManager for interacting with fragments associated with this activity.
