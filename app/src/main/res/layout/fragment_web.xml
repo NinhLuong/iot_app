@@ -33,6 +33,12 @@
             android:layout_height="wrap_content"
             android:text="Air" />
 
+        <Button
+            android:id="@+id/change_fan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fan" />
+
     </LinearLayout>
 
 
