@@ -148,9 +148,10 @@ public class DetailFragment extends Fragment {
                 // Get the data from the snapshot
                 String himi = dataSnapshot.getValue(String.class);
                  Log.d("value_himi", "Value is: " + himi);
-                if(himi != "null"){
-                    txtHum.setText(himi.substring(0, 2));
-                };
+
+                if(himi != null && !himi.equals("null")){
+                    txtTemp.setText(himi.substring(0, 2));
+                }
 
             }
 
@@ -165,10 +166,9 @@ public class DetailFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // Get the data from the snapshot
                     String temp = dataSnapshot.getValue(String.class);
-                    Log.d("value_temp", "Value is: " + temp);
-                    if(temp != "null" ){
+                    if(temp != null && !temp.equals("null")){
                         txtTemp.setText(temp.substring(0, 2));
-                    };
+                    }
                 }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -250,13 +250,13 @@ public class DetailFragment extends Fragment {
                             Device newDevice;
                             switch (device_type){
                                 case "Fan":
-                                    newDevice = new Device(R.drawable.ic_fan_off, name_device, "Vừa", false,"Fan");
+                                    newDevice = new Device(R.drawable.ic_fan_off, name_device, "Vừa", false,"Fan", roomName);
                                     break;
                                 case "Air Condition":
-                                    newDevice = new Device(R.drawable.ac_off, name_device, "26°C", false, "Air Condition");
+                                    newDevice = new Device(R.drawable.ac_off, name_device, "26°C", false, "Air Condition", roomName);
                                     break;
                                 default:
-                                    newDevice = new Device(R.drawable.led_off, name_device, "Blue", false, "Light");
+                                    newDevice = new Device(R.drawable.led_off, name_device, "Blue", false, "Light", roomName);
                                     break;
                             }
 //

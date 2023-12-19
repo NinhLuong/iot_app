@@ -10,18 +10,20 @@ public class Device {
     private String device;
     private String detail;
     private String category;
-
+    private String nameRoom;
     private boolean swithStatus;
 
 
 
     private ArrayList<DeviceRoom> deviceRoomArrayList;
-    public Device(int idDevice, String device, String detail, boolean swithStatus, String category) {
+    public Device(int idDevice, String device, String detail, boolean swithStatus, String category, String nameRoom) {
         this.idDevice = idDevice;
         this.device = device;
         this.detail = detail;
         this.swithStatus = swithStatus;
+        this.nameRoom = nameRoom;
         this.category = category;
+
         this.deviceRoomArrayList = new ArrayList<>();
     }
     public boolean isSwithStatus() {
@@ -74,6 +76,14 @@ public class Device {
 
     public int getDeviceCount() {
         return deviceRoomArrayList.size();
+    }
+
+    public String getNameRoom() {
+        return this.nameRoom;
+    }
+
+    public void setNameRoom(final String nameRoom) {
+        this.nameRoom = nameRoom;
     }
 }
 
