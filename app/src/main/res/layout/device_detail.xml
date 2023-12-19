@@ -23,14 +23,15 @@
 
             <ImageView
                 android:id="@+id/imgDevice"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
-                android:src="@drawable/ic_lamp"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:src="@drawable/led_off"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
                 android:id="@+id/swtDevice"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:thumb="@drawable/thumb"
@@ -44,7 +45,7 @@
             android:id="@+id/txtNameDevice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="55dp"
             android:text="Desk lamp"
             android:textColor="@color/gray_800"
             android:textSize="18dp"

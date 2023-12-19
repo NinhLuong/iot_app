@@ -1,12 +1,16 @@
-package com.example.iot_app;
+package com.example.iot_app.device;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.iot_app.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +62,19 @@ public class FanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fan, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_fan, container, false);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle("Desk lamp");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().onBackPressed();
+            }
+        });
+
+        return rootView;
     }
 }

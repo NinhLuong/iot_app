@@ -87,6 +87,49 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             Log.d("setup category: ", category);
         };*/
 
+        /*myRef.child(roomName).child("devices").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listDevice.clear();
+                for (DataSnapshot deviceSnapshot : dataSnapshot.getChildren()) {
+                    Device device = deviceSnapshot.getValue(Device.class);
+                    if (device.isSwithStatus()) {
+                        switch (device.getCategory()){
+                            case "Fan":
+                                device.setIdDevice(R.drawable.ic_fan_on);
+                                break;
+                            case "Air Condition":
+                                device.setIdDevice(R.drawable.ac_on);
+                                break;
+                            default:
+                                device.setIdDevice(R.drawable.led_on);
+                                break;
+                        }
+                    } else {
+                        switch (device.getCategory()){
+                            case "Fan":
+                                device.setIdDevice(R.drawable.ic_fan_off);
+                                break;
+                            case "Air Condition":
+                                device.setIdDevice(R.drawable.ac_off);
+                                break;
+                            default:
+                                device.setIdDevice(R.drawable.led_off);
+                                break;
+                        }
+                    }
+                    listDevice.add(device);
+                }
+                deviceAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });*/
+
         holder.itemView.setOnClickListener(v -> {
 //            LampFragment deviceFragment = new LampFragment();
 /*            if (category != null){
@@ -98,7 +141,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
             switch (category){
                 case "Fan":
-                     deviceFragment = new AirFragment();
+                     deviceFragment = new FanFragment();
                     break;
                 case "Air Condition":
                      deviceFragment = new AirFragment();

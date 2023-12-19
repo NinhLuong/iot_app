@@ -6,40 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".webview_page.WebFragment">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <WebView
+        android:id="@+id/map_webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/change_lamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lamp" />
-
-        <Button
-            android:id="@+id/change_ari"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Air" />
-
-        <Button
-            android:id="@+id/change_fan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fan" />
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" >
+    </WebView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

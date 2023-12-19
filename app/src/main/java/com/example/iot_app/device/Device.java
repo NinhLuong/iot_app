@@ -1,5 +1,6 @@
 package com.example.iot_app.device;
 
+import com.example.iot_app.R;
 import com.example.iot_app.device_room.DeviceRoom;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public class Device {
     private String category;
 
     private boolean swithStatus;
+
+
 
     private ArrayList<DeviceRoom> deviceRoomArrayList;
     public Device(int idDevice, String device, String detail, boolean swithStatus, String category) {

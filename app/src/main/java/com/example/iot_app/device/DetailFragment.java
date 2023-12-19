@@ -1,5 +1,6 @@
 package com.example.iot_app.device;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Dialog;
@@ -28,14 +29,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iot_app.R;
 import com.example.iot_app.SharedViewModel;
 import com.example.iot_app.home_page.Room;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,7 @@ public class DetailFragment extends Fragment {
     private List<Device> listDevice;
     // A private variable for a Room object.
     private String device_type;
+    private TextView txtTemp, txtHum;
 //    private Device newDevice;
 
     @Override
@@ -129,6 +135,47 @@ public class DetailFragment extends Fragment {
         // Retrieve the value associated with the key "index" from the arguments supplied
         // when this fragment was instantiated and assign it to 'index'.
 
+        txtTemp = view.findViewById(R.id.tempRoom);
+        txtHum = view.findViewById(R.id.humRoom);
+
+        DatabaseReference humiRef = myRef.child(roomName).child("Hum");
+        DatabaseReference tempRef = myRef.child(roomName).child("Temp");
+
+
+        humiRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                String himi = dataSnapshot.getValue(String.class);
+                 Log.d("value_himi", "Value is: " + himi);
+                if(himi != "null"){
+                    txtHum.setText(himi.substring(0, 2));
+                };
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        tempRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // Get the data from the snapshot
+                    String temp = dataSnapshot.getValue(String.class);
+                    Log.d("value_temp", "Value is: " + temp);
+                    if(temp != "null" ){
+                        txtTemp.setText(temp.substring(0, 2));
+                    };
+                }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 //        viewModel.loadData(getContext());
         // Get an instance of SharedViewModel associated with this activity.
@@ -203,21 +250,22 @@ public class DetailFragment extends Fragment {
                             Device newDevice;
                             switch (device_type){
                                 case "Fan":
-                                    newDevice = new Device(R.drawable.fan, name_device, "Vừa", false,"Fan");
+                                    newDevice = new Device(R.drawable.ic_fan_off, name_device, "Vừa", false,"Fan");
                                     break;
                                 case "Air Condition":
-                                    newDevice = new Device(R.drawable.air_condition, name_device, "26C", false, "Air Condition");
+                                    newDevice = new Device(R.drawable.ac_off, name_device, "26°C", false, "Air Condition");
                                     break;
                                 default:
-                                    newDevice = new Device(R.drawable.ic_lamp, name_device, "Blue", false, "Light");
+                                    newDevice = new Device(R.drawable.led_off, name_device, "Blue", false, "Light");
                                     break;
                             }
 //
                             // Create a new Device object with default image, name from 'edtNameRoom', and info from 'edtInfo'.
 //                            viewModel.addRoomArea(newDevice);
                             viewModel.addDeviceToRoom(indexArea, newDevice);
-                            myRef.child(roomName).child("devices").child(name_device).child("Switch").setValue("false");
-                            myRef.child(roomName).child("devices").child(name_device).child("Detail").setValue("");
+                            myRef.child(roomName).child("devices").child(name_device).setValue(newDevice);
+                            /*myRef.child(roomName).child("devices").child(name_device).child("Switch").setValue("false");
+                            myRef.child(roomName).child("devices").child(name_device).child("Detail").setValue("");*/
 //                            deviceAdapter = new DeviceAdapter(listDevice, device_type );
 //                            rcvRoom.setAdapter(deviceAdapter);
 //                            viewModel.saveData(getContext());
@@ -237,6 +285,49 @@ public class DetailFragment extends Fragment {
             }
 
         });
+        /*myRef.child(roomName).child("devices").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listDevice.clear();
+                for (DataSnapshot deviceSnapshot : dataSnapshot.getChildren()) {
+                    Device device = deviceSnapshot.getValue(Device.class);
+                    if (device.isSwithStatus()) {
+                        switch (device.getCategory()){
+                            case "Fan":
+                                device.setIdDevice(R.drawable.ic_fan_on);
+                                break;
+                            case "Air Condition":
+                                device.setIdDevice(R.drawable.ac_on);
+                                break;
+                            default:
+                                device.setIdDevice(R.drawable.led_on);
+                                break;
+                        }
+                    } else {
+                        switch (device.getCategory()){
+                            case "Fan":
+                                device.setIdDevice(R.drawable.ic_fan_off);
+                                break;
+                            case "Air Condition":
+                                device.setIdDevice(R.drawable.ac_off);
+                                break;
+                            default:
+                                device.setIdDevice(R.drawable.led_off);
+                                break;
+                        }
+                    }
+                    listDevice.add(device);
+                }
+                deviceAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });*/
+
 
         deviceAdapter = new DeviceAdapter(listDevice );
         rcvRoom.setAdapter(deviceAdapter);

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5sp"
-        android:text="Thêm khu vực"
+        android:text="Thêm kho"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
@@ -23,13 +23,43 @@
         android:background="@drawable/background_edit_add"
         android:ems="10"
         android:inputType="text"
-        android:hint="Nhập tên khu vực "
+        android:hint="Nhập tên kho "
         android:textColorHint="#707070"
         android:gravity="center"
         android:textColor="#707070"
         android:layout_marginTop="8dp"
         android:layout_marginStart="10sp"
         android:layout_marginEnd="10sp"/>
+
+    <!--<EditText
+        android:id="@+id/edtLati"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background_edit_add"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Nhập vĩ độ "
+        android:textColorHint="#707070"
+        android:gravity="center"
+        android:textColor="#707070"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"/>
+
+    <EditText
+        android:id="@+id/edtLongi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background_edit_add"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Nhập kinh độ "
+        android:textColorHint="#707070"
+        android:gravity="center"
+        android:textColor="#707070"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"/>-->
 
     <!--<EditText
         android:id="@+id/edtNumDevice"

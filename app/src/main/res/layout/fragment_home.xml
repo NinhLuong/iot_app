@@ -163,7 +163,7 @@
                     android:layout_marginTop="7dp"
                     android:text="ĐH SPKT TP.HCM"
                     android:textColor="#D1CCF2"
-                    android:textSize="16dp"
+                    android:textSize="12dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
