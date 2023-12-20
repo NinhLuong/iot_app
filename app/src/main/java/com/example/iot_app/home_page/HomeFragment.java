@@ -223,7 +223,7 @@ public class HomeFragment extends Fragment {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                 }
             }
-        }, 10000);
+        }, 5000);
 
     }
 
