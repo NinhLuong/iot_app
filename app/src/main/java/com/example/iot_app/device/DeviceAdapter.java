@@ -19,7 +19,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iot_app.R;
-import com.example.iot_app.device_room.DeviceFragment;
 import com.example.iot_app.home_page.Room;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -85,56 +84,16 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("rooms");
 
-
-        /*holder.switchStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int pos = holder.getBindingAdapterPosition();
-                if (pos != RecyclerView.NO_POSITION) {
-                    final Device currentDevice = device;  // Declare a new final variable
-                    currentDevice.setSwithStatus(isChecked);
-                    if (isChecked) {
-                        switch (currentDevice.getCategory()){
-                            case "Fan":
-                                currentDevice.setIdDevice(R.drawable.ic_fan_on);
-                                break;
-                            case "Air Condition":
-                                currentDevice.setIdDevice(R.drawable.ac_on);
-                                break;
-                            default:
-                                currentDevice.setIdDevice(R.drawable.led_on);
-                                break;
-                        }
-
-                    } else {
-                        switch (currentDevice.getCategory()){
-                            case "Fan":
-                                currentDevice.setIdDevice(R.drawable.ic_fan_off);
-                                break;
-                            case "Air Condition":
-                                currentDevice.setIdDevice(R.drawable.ac_off);
-                                break;
-                            default:
-                                currentDevice.setIdDevice(R.drawable.led_off);
-                                break;
-                        }
-                    }
-                    updateDevice(pos, currentDevice);
-//                    myRef.child("devices").child(currentDevice.getDevice()).setValue(currentDevice);
-                }
-            }
-        });*/
-
         holder.switchStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int pos = holder.getBindingAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
-                    final Device currentDevice = device;  // Declare a new final variable
-                    currentDevice.setSwithStatus(isChecked);
+//                    final Device currentDevice = device;  // Declare a new final variable
+                    device.setSwithStatus(isChecked);
                     int imageResource;
                     if (isChecked) {
-                        switch (currentDevice.getCategory()){
+                        switch (device.getCategory()){
                             case "Fan":
                                 imageResource = R.drawable.ic_fan_on;
                                 break;
@@ -147,7 +106,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
                         }
 
                     } else {
-                        switch (currentDevice.getCategory()){
+                        switch (device.getCategory()){
                             case "Fan":
                                 imageResource = R.drawable.ic_fan_off;
                                 break;
@@ -159,9 +118,9 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
                                 break;
                         }
                     }
-                    currentDevice.setIdDevice(imageResource);
-                    myRef.child(device.getNameRoom()).child("devices").child(currentDevice.getDevice()).child("swithStatus").setValue(currentDevice.isSwithStatus());
-                    myRef.child(device.getNameRoom()).child("devices").child(currentDevice.getDevice()).child("idDevice").setValue(imageResource);
+                    device.setIdDevice(imageResource);
+                    myRef.child(device.getNameRoom()).child("devices").child(device.getDevice()).child("swithStatus").setValue(device.isSwithStatus());
+                    myRef.child(device.getNameRoom()).child("devices").child(device.getDevice()).child("idDevice").setValue(imageResource);
                     holder.imageDevice.setImageResource(imageResource);  // Update the image view directly
                 }
             }
@@ -193,11 +152,13 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             Bundle bundle = new Bundle();
 
             //Create a new instance of Bundle.
-            bundle.putInt("indexRoom", position);
+//            bundle.putInt("indexRoom", position);
 //            bundle.putInt("indexArea", this.indexArea);
             // Put an integer value into the bundle with key as "index" and value as 'position'.
-            deviceFragment.setArguments(bundle);
+//            deviceFragment.setArguments(bundle);
             // Set arguments supplied by bundle to detailFragment.
+            bundle.putBoolean("switchStatus", device.isSwithStatus());
+            bundle.putString("roomName", device.getNameRoom());
             bundle.putString("deviceName", device.getDevice());
             //get name of room with key is roomName
             deviceFragment.setArguments(bundle);

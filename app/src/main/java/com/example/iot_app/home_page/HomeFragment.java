@@ -55,10 +55,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class HomeFragment extends Fragment {
 
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
     private RecyclerView rcvData;
     // A private variable for RecyclerView, which lets you display data in a scrolling list.
     private RoomAdapter roomAdapter;
@@ -83,10 +79,17 @@ public class HomeFragment extends Fragment {
 
     TextView NameofCity, Temperature, Humidity, dateTime;
     ImageView weatherIcon;
+    // Add a member variable to store the context
+    private Context fragmentContext;
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private LocationManager locationManager;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        fragmentContext = context;
+    }
 
 
     @Override
@@ -113,7 +116,7 @@ public class HomeFragment extends Fragment {
 
         locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(fragmentContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         } else {
             startLocationUpdates();
@@ -122,7 +125,7 @@ public class HomeFragment extends Fragment {
         userName = view.findViewById(R.id.userName);
         rcvData = view.findViewById(R.id.rcv_data);
 //        userName.setText("Hi, " + username);
-        userName.setText("Hi, " + mainActivity.getGusername());
+//        userName.setText("Hi, " + mainActivity.getGusername());
         // Find a view that was identified by the 'rcv_data' id attribute in XML layout file and assign it to 'rcvData'.
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -216,10 +219,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 // Check if the app has location permission again (just in case)
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    // Request location with GPS
+                // Check if the app has location permission again (just in case)
+                if (ContextCompat.checkSelfPermission(fragmentContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                    // Request location with Network
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                 }
             }

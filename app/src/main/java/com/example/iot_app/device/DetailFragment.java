@@ -256,7 +256,7 @@ public class DetailFragment extends Fragment {
                                     newDevice = new Device(R.drawable.ac_off, name_device, "26°C", false, "Air Condition", roomName);
                                     break;
                                 default:
-                                    newDevice = new Device(R.drawable.led_off, name_device, "Blue", false, "Light", roomName);
+                                    newDevice = new Device(R.drawable.led_off, name_device, "yellow", false, "Light", roomName);
                                     break;
                             }
 //

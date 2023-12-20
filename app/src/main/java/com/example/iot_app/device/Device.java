@@ -1,7 +1,6 @@
 package com.example.iot_app.device;
 
-import com.example.iot_app.R;
-import com.example.iot_app.device_room.DeviceRoom;
+
 
 import java.util.ArrayList;
 
@@ -15,7 +14,8 @@ public class Device {
 
 
 
-    private ArrayList<DeviceRoom> deviceRoomArrayList;
+
+//    private ArrayList<DeviceRoom> deviceRoomArrayList;
     public Device(int idDevice, String device, String detail, boolean swithStatus, String category, String nameRoom) {
         this.idDevice = idDevice;
         this.device = device;
@@ -24,7 +24,7 @@ public class Device {
         this.nameRoom = nameRoom;
         this.category = category;
 
-        this.deviceRoomArrayList = new ArrayList<>();
+//        this.deviceRoomArrayList = new ArrayList<>();
     }
     public boolean isSwithStatus() {
         return this.swithStatus;
@@ -58,13 +58,6 @@ public class Device {
         this.detail = detail;
     }
 
-    public ArrayList<DeviceRoom> getDeviceRoomArrayList() {
-        return deviceRoomArrayList;
-    }
-
-    public void setDeviceRoomArrayList(final ArrayList<DeviceRoom> deviceRoomArrayList) {
-        this.deviceRoomArrayList = deviceRoomArrayList;
-    }
 
     public void setCategory(final String category) {
         this.category = category;
@@ -74,17 +67,17 @@ public class Device {
         return this.category;
     }
 
-    public int getDeviceCount() {
-        return deviceRoomArrayList.size();
-    }
+//    public int getDeviceCount() {
+//        return deviceRoomArrayList.size();
+//    }
 
     public String getNameRoom() {
         return this.nameRoom;
     }
 
-    public void setNameRoom(final String nameRoom) {
-        this.nameRoom = nameRoom;
-    }
+//    public void setNameRoom(final String nameRoom) {
+//        this.nameRoom = nameRoom;
+//    }
 }
 
 
