@@ -20,8 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iot_app.R;
 import com.example.iot_app.home_page.Room;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -75,14 +78,59 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             return ;
         }
 
-        // Set the resource
-        holder.imageDevice.setImageResource(device.getIdDevice());
-        holder.txtName.setText(device.getDevice());
-//        String deviceText = device.getDeviceCount() + " device(s)";
-        holder.txtDetail.setText(device.getDetail());
-        holder.switchStatus.setChecked(device.isSwithStatus());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("rooms");
+        DatabaseReference switchStatus = myRef.child(device.getNameRoom()).child("devices").child(device.getDevice()).child("swithStatus");
+        DatabaseReference detailRef = myRef.child(device.getNameRoom()).child("devices").child(device.getDevice()).child("detail");
+
+        switchStatus.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                Boolean ledStatus = dataSnapshot.getValue(Boolean.class);
+                Log.d("ledStatus", "Value is: " + ledStatus);
+
+                if(ledStatus != null ){
+
+                    holder.switchStatus.setChecked(ledStatus);
+                }
+
+                if (!ledStatus ) {
+                    holder.imageDevice.setImageResource(R.drawable.led_off);
+                    Log.d("complete setup false", "Value is: " + ledStatus);
+                }else{
+                    holder.imageDevice.setImageResource(R.drawable.led_on);
+                    Log.d("complete setup true", "Value is: " + ledStatus);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("ledStatus error: ", String.valueOf(error));
+            }
+        });
+
+        detailRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                String detail = dataSnapshot.getValue(String.class);
+                holder.txtDetail.setText(detail);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("error detail in firebase: ", String.valueOf(error));
+            }
+        });
+        // Set the resource
+//        holder.imageDevice.setImageResource(device.getIdDevice());
+        holder.txtName.setText(device.getDevice());
+//        String deviceText = device.getDeviceCount() + " device(s)";
+//        holder.txtDetail.setText(device.getDetail());
+//        holder.switchStatus.setChecked(device.isSwithStatus());
+
 
         holder.switchStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
