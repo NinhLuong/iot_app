@@ -250,13 +250,13 @@ public class DetailFragment extends Fragment {
                             Device newDevice;
                             switch (device_type){
                                 case "Fan":
-                                    newDevice = new Device(R.drawable.ic_fan_off, name_device, "Vừa", false,"Fan", roomName);
+                                    newDevice = new Device(R.drawable.ic_fan_off, name_device, "Medium", false,100,"Fan", roomName);
                                     break;
                                 case "Air Condition":
-                                    newDevice = new Device(R.drawable.ac_off, name_device, "26°C", false, "Air Condition", roomName);
+                                    newDevice = new Device(R.drawable.ac_off, name_device, "24", false,24,"normal",false,  "Air Condition", roomName);
                                     break;
                                 default:
-                                    newDevice = new Device(R.drawable.led_off, name_device, "yellow", false, "Light", roomName);
+                                    newDevice = new Device(R.drawable.led_off, name_device, "yellow", false, 100,"Light", roomName);
                                     break;
                             }
 //

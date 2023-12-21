@@ -93,15 +93,17 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
                 if(ledStatus != null ){
 
                     holder.switchStatus.setChecked(ledStatus);
+
+                    if (!ledStatus ) {
+                        holder.imageDevice.setImageResource(R.drawable.led_off);
+                        Log.d("complete setup false", "Value is: " + ledStatus);
+                    }else{
+                        holder.imageDevice.setImageResource(R.drawable.led_on);
+                        Log.d("complete setup true", "Value is: " + ledStatus);
+                    }
                 }
 
-                if (!ledStatus ) {
-                    holder.imageDevice.setImageResource(R.drawable.led_off);
-                    Log.d("complete setup false", "Value is: " + ledStatus);
-                }else{
-                    holder.imageDevice.setImageResource(R.drawable.led_on);
-                    Log.d("complete setup true", "Value is: " + ledStatus);
-                }
+
 
             }
 

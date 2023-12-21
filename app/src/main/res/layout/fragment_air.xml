@@ -123,6 +123,7 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+                    android:id="@+id/txtMin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5%"
@@ -132,6 +133,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/txtMax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100%"
@@ -194,7 +196,7 @@
                         android:layout_marginRight="20dp"/>
 
                     <RadioButton
-                        android:id="@+id/btnDry"
+                        android:id="@+id/btnNormal"
                         android:layout_width="100dp"
                         android:layout_height="55dp"
                         android:textColor="@drawable/custom_radio_text_color_selector"
@@ -203,7 +205,7 @@
                         android:drawableEnd="@drawable/custom_icon_dry_selector"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="Dry" />
+                        android:text="Normal" />
                 </RadioGroup>
             </LinearLayout>
 

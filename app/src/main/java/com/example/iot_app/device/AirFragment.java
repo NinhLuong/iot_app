@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -31,6 +33,7 @@ public class AirFragment extends Fragment {
 
     Boolean ledStatus;
     TextView valueInten, txtIntensity ;
+    String modeAir;
 
     @Nullable
     @Override
@@ -54,6 +57,8 @@ public class AirFragment extends Fragment {
         Switch switchAir = rootView.findViewById(R.id.switchAir);
         Switch switchAuto = rootView.findViewById(R.id.switchAuto);
         TextView textTemp = rootView.findViewById(R.id.textTemp);
+        TextView txtMin = rootView.findViewById(R.id.txtMin);
+        TextView txtMax = rootView.findViewById(R.id.txtMax);
         RadioGroup radioGroup = rootView.findViewById(R.id.radioGroup);
         AppCompatSeekBar seekBarLamp = rootView.findViewById(R.id.seekBarAir);
 
@@ -62,6 +67,12 @@ public class AirFragment extends Fragment {
         DatabaseReference switchStatus = myRef.child(roomName).child("devices").child(deviceName).child("swithStatus");
         DatabaseReference intensityRef = myRef.child(roomName).child("devices").child(deviceName).child("detail");
         DatabaseReference modeRef = myRef.child(roomName).child("devices").child(deviceName).child("mode");
+        DatabaseReference autoRef = myRef.child(roomName).child("devices").child(deviceName).child("autoStatus");
+
+        RadioButton btnHot = rootView.findViewById(R.id.btnHot);
+        RadioButton btnCold = rootView.findViewById(R.id.btnCold);
+        RadioButton btnNormal = rootView.findViewById(R.id.btnNormal);
+
         switchStatus.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,18 +91,51 @@ public class AirFragment extends Fragment {
                 Log.d("ledStatus error: ", String.valueOf(error));
             }
         });
+        switchAir.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                myRef.child(roomName).child("devices").child(deviceName).child("swithStatus").setValue(isChecked);
 
+            }
+        });
+
+        autoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+               boolean autoStatus = dataSnapshot.getValue(boolean.class);
+                Log.d("ledStatus", "Value is: " + ledStatus);
+
+                if(ledStatus != null ){
+
+                    switchAir.setChecked(ledStatus);
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("ledStatus error: ", String.valueOf(error));
+            }
+        });
+
+        switchAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                myRef.child(roomName).child("devices").child(deviceName).child("swithStatus").setValue(isChecked);
+
+            }
+        });
         intensityRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Integer intensity = dataSnapshot.getValue(Integer.class);
+                String intensity = dataSnapshot.getValue(String.class);
                 if (intensity == null) {
-                    intensity = 25;
+                    intensity = "25";
                     intensityRef.setValue(intensity);
                 }
 
                 textTemp.setText(intensity);
-                seekBarLamp.setProgress(intensity);
+                seekBarLamp.setProgress(Integer.valueOf(intensity));
             }
 
             @Override
@@ -104,9 +148,21 @@ public class AirFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                textTemp.setText(progress);
+
                 if (fromUser) {
-                    intensityRef.setValue(progress);
+                    switch (modeAir){
+                        case "hot":
+                            progress = progress / 2 + 50; // changes from 50 to 100
+                            break;
+                        case "cold":
+                            progress = progress * 80 / 100 - 50; // changes from -50 to 30
+                            break;
+                        case "normal":
+                            progress = progress * 40 / 100; // changes from 0 to 40
+                            break;
+                    }
+                    intensityRef.setValue(String.valueOf(progress));
+                    textTemp.setText(String.valueOf(progress));
                 }
             }
 
@@ -117,6 +173,83 @@ public class AirFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
+        modeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                modeAir = dataSnapshot.getValue(String.class);
+                if (modeAir == null) {
+                    modeAir = "normal";
+                }
+                switch (modeAir) {
+
+                    case "hot":
+                        btnHot.setChecked(true);
+                        txtMin.setText("50");
+                        txtMax.setText("100");
+                        break;
+                    case "cold":
+                        btnCold.setChecked(true);
+                        txtMin.setText("-50");
+                        txtMax.setText("40");
+                        break;
+                    default:
+                        btnNormal.setChecked(true);
+                        txtMin.setText("0");
+                        txtMax.setText("40");
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "Failed to read value intensityRef.", databaseError.toException());
+            }
+        });
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Get the selected radio button
+                RadioButton selectedRadioButton = rootView.findViewById(checkedId);
+
+                if (selectedRadioButton != null) {
+                    // Get the color corresponding to the selected radio button
+                    String mode = AirFragment.this.getSelectedColor(selectedRadioButton);
+
+                    // Send the color to Firebase
+                    myRef.child(roomName).child("devices").child(deviceName).child("mode").setValue(mode);
+                    Log.d("color choice", mode);
+                    // Uncheck all other radio buttons in the group
+                    AirFragment.this.clearRadioGroupSelection(group, selectedRadioButton);
+                }
+            }
+        });
+
+
+
         return rootView;
+    }
+    private String getSelectedColor(RadioButton radioButton) {
+        // Get the color associated with the selected radio button
+        // You can customize this method based on your implementation
+
+        if (radioButton.getId() == R.id.btnHot) {
+            return "hot";
+        } else if (radioButton.getId() == R.id.btnCold) {
+            return "cold";
+        } else if (radioButton.getId() == R.id.btnNormal) {
+            return "normal";
+        } else {
+            return "normal"; // Default case
+        }
+    }
+
+    private void clearRadioGroupSelection(RadioGroup group, RadioButton selectedRadioButton) {
+        // Uncheck all other radio buttons in the group
+        for (int i = 0; i < group.getChildCount(); i++) {
+            RadioButton radioButton = (RadioButton) group.getChildAt(i);
+            if (radioButton != selectedRadioButton) {
+                radioButton.setChecked(false);
+            }
+        }
     }
 }

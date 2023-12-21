@@ -13,18 +13,29 @@ public class Device {
     private boolean swithStatus, autoStatus;
 
 
-
-
-//    private ArrayList<DeviceRoom> deviceRoomArrayList;
-    public Device(int idDevice, String device, String detail, boolean swithStatus, String category, String nameRoom) {
+// Fan device
+// Lamp device
+    public Device(int idDevice, String device, String detail, boolean swithStatus,int  intensity, String category, String nameRoom) {
         this.idDevice = idDevice;
         this.device = device;
         this.detail = detail;
         this.swithStatus = swithStatus;
         this.nameRoom = nameRoom;
         this.category = category;
+        this.intensity = intensity;
+    }
 
-//        this.deviceRoomArrayList = new ArrayList<>();
+    //    Air conditon device
+    public Device(int idDevice, String device, String detail, boolean swithStatus,int intensity, String mode, boolean autoStatus ,String category, String nameRoom) {
+        this.idDevice = idDevice;
+        this.device = device;
+        this.detail = detail;
+        this.swithStatus = swithStatus;
+        this.nameRoom = nameRoom;
+        this.category = category;
+        this.intensity = intensity;
+        this.mode = mode;
+        this.autoStatus = autoStatus;
     }
     public boolean isSwithStatus() {
         return this.swithStatus;
@@ -76,9 +87,33 @@ public class Device {
     }
 
 
-//    public void setNameRoom(final String nameRoom) {
-//        this.nameRoom = nameRoom;
-//    }
+    public void setNameRoom(final String nameRoom) {
+        this.nameRoom = nameRoom;
+    }
+
+    public int getIntensity() {
+        return this.intensity;
+    }
+
+    public String getMode() {
+        return this.mode;
+    }
+
+    public boolean isAutoStatus() {
+        return this.autoStatus;
+    }
+
+    public void setIntensity(final int intensity) {
+        this.intensity = intensity;
+    }
+
+    public void setMode(final String mode) {
+        this.mode = mode;
+    }
+
+    public void setAutoStatus(final boolean autoStatus) {
+        this.autoStatus = autoStatus;
+    }
 }
 
 

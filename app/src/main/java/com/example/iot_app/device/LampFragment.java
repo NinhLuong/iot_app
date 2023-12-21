@@ -85,17 +85,17 @@ public class LampFragment extends Fragment {
                     if (!ledStatus ) {
                         imageView.setVisibility(View.INVISIBLE);
                         seekBarLamp.setEnabled(false);
-                     /*   for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             radioGroup.getChildAt(i).setEnabled(false);
-                        }*/
+                        }
                         Log.d("complete setup false", "Value is: " + ledStatus);
                     }
                     if (ledStatus ){
                         imageView.setVisibility(View.VISIBLE);
                         seekBarLamp.setEnabled(true);
-                        /*for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             radioGroup.getChildAt(i).setEnabled(true);
-                        }*/
+                        }
                         Log.d("complete setup true", "Value is: " + ledStatus);
                     }
                 }
@@ -130,9 +130,6 @@ public class LampFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Get the selected radio button
                 AppCompatRadioButton selectedRadioButton = rootView.findViewById(checkedId);
-                Log.d("selectedRadioButton", String.valueOf(selectedRadioButton));
-                Log.d("checkedId", String.valueOf(checkedId));
-                Log.d("R.id.green", String.valueOf(R.id.green));
 
                 if (selectedRadioButton != null) {
                     // Get the color corresponding to the selected radio button
