@@ -5,12 +5,12 @@ package com.example.iot_app.device;
 import java.util.ArrayList;
 
 public class Device {
-    private int idDevice;
-    private String device;
+    private int idDevice, intensity;
+    private String device, mode;
     private String detail;
     private String category;
     private String nameRoom;
-    private boolean swithStatus;
+    private boolean swithStatus, autoStatus;
 
 
 
@@ -74,6 +74,7 @@ public class Device {
     public String getNameRoom() {
         return this.nameRoom;
     }
+
 
 //    public void setNameRoom(final String nameRoom) {
 //        this.nameRoom = nameRoom;

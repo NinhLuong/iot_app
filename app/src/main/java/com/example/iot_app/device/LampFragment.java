@@ -70,7 +70,7 @@ public class LampFragment extends Fragment {
         DatabaseReference myRef = database.getReference("rooms");
         DatabaseReference switchStatus = myRef.child(roomName).child("devices").child(deviceName).child("swithStatus");
         DatabaseReference detailRef = myRef.child(roomName).child("devices").child(deviceName).child("detail");
-        DatabaseReference intensityRef = myRef.child(roomName).child("devices").child(deviceName).child("Intensity");
+        DatabaseReference intensityRef = myRef.child(roomName).child("devices").child(deviceName).child("intensity");
         switchStatus.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
