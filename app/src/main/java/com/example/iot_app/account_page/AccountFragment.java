@@ -37,6 +37,7 @@ public class AccountFragment extends Fragment {
         Button btnLogout = view.findViewById(R.id.btnLogout);
         Button btnChangePW = view.findViewById(R.id.btnChangePass);
         TextView getUsername = view.findViewById(R.id.getUsername);
+        TextView titleUsername = view.findViewById(R.id.titleUsername);
         TextView getEnail = view.findViewById(R.id.getEnail);
         TextView getPhone = view.findViewById(R.id.getPhone);
 
@@ -45,6 +46,7 @@ public class AccountFragment extends Fragment {
         DatabaseReference numberref = FirebaseDatabase.getInstance().getReference("users").child(username).child("email");
 
         getUsername.setText(username);
+        titleUsername.setText(username);
         emailref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
