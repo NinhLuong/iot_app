@@ -198,6 +198,7 @@ public class HomeFragment extends Fragment {
                             // Create a new Room object with default image, name from 'edtNameRoom', and "0 device".
                             myRef.child(name).child("Temp").setValue("null");
                             myRef.child(name).child("Hum").setValue("null");
+                            myRef.child(name).child("SOS").setValue("false");
                             myRef.child(name).child("Longitude").setValue(longitude);
                             myRef.child(name).child("Latitude").setValue(latitude);
 
