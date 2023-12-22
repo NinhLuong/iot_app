@@ -53,10 +53,11 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                /*if (!isValidPhoneNumber(phoneNumber)) {
+                if (!isValidPhoneNumber(phoneNumber)) {
                     signup_phone.setError("Invalid phone number! Phone number must have exactly 10 numbers starting with 0 with no characters.");
                     return;
-                }*/
+                }
+
    /*             Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
                 intent.putExtra("username", username);
                 intent.putExtra("email", email);

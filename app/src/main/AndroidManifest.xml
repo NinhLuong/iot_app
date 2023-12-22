@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
@@ -17,45 +18,46 @@
         android:theme="@style/Theme.Iot_app"
         tools:targetApi="31">
         <activity
+            android:name=".account_page.ChangePW"
+            android:exported="false" />
+        <activity
             android:name=".sign_up.OtpActivity"
             android:exported="false">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
-
         <activity
             android:name=".sign_up.SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".sign_in.LoginActivity"
-            android:exported="false" >
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-    </activity>
-
-        <activity
-            android:name=".sign_in.OpenningSreen"
-            android:exported="false">
-
-        </activity>
-
-
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".sign_in.OpenningSreen"
+            android:exported="false"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
     </application>
 

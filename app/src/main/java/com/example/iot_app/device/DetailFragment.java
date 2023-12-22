@@ -283,7 +283,6 @@ public class DetailFragment extends Fragment {
                 dialog.show();
 
             }
-
         });
         /*myRef.child(roomName).child("devices").addValueEventListener(new ValueEventListener() {
             @Override

@@ -93,7 +93,15 @@ public class FanFragment extends Fragment {
                 switchFan.setChecked(fanStatus);
                 if(fanStatus){
                     imgFan.setImageResource(R.drawable.fan_on);
+                    seekBarFan.setEnabled(true);
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(true);
+                    }
                 }else {
+                    seekBarFan.setEnabled(false);
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
                     imgFan.setImageResource(R.drawable.fan_off);
                 }
 

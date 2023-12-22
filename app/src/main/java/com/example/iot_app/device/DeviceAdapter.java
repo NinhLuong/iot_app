@@ -94,12 +94,31 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
                     holder.switchStatus.setChecked(ledStatus);
 
-                    if (!ledStatus ) {
-                        holder.imageDevice.setImageResource(R.drawable.led_off);
-                        Log.d("complete setup false", "Value is: " + ledStatus);
+                    if (ledStatus ) {
+                        switch (device.getCategory()){
+                            case "Fan":
+                                holder.imageDevice.setImageResource(R.drawable.ic_fan_on);
+                                break;
+                            case "Air Condition":
+                                holder.imageDevice.setImageResource(R.drawable.ac_on);
+                                break;
+                            default:
+                                holder.imageDevice.setImageResource(R.drawable.led_on);
+                                break;
+                        }
+
                     }else{
-                        holder.imageDevice.setImageResource(R.drawable.led_on);
-                        Log.d("complete setup true", "Value is: " + ledStatus);
+                        switch (device.getCategory()){
+                            case "Fan":
+                                holder.imageDevice.setImageResource(R.drawable.ic_fan_off);
+                                break;
+                            case "Air Condition":
+                                holder.imageDevice.setImageResource(R.drawable.ac_off);
+                                break;
+                            default:
+                                holder.imageDevice.setImageResource(R.drawable.led_off);
+                                break;
+                        }
                     }
                 }
 
