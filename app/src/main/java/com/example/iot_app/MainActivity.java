@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -54,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         // Set the root view for this activity.
 
+        Intent intent = new Intent(this, StatusService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
+        }
         username = getIntent().getStringExtra("username");
         gusername = username;
 

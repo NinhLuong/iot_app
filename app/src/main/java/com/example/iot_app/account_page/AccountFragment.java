@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.iot_app.R;
 import com.example.iot_app.sign_in.LoginActivity;
 import com.example.iot_app.sign_up.SignUpActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AccountFragment extends Fragment {
 
@@ -28,8 +31,12 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         Button btnLogout = view.findViewById(R.id.btnLogout);
         Button btnChangePW = view.findViewById(R.id.btnChangePass);
+        TextView getUsername = view.findViewById(R.id.getUsername);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+
 
         // Add an action listener to the button
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
