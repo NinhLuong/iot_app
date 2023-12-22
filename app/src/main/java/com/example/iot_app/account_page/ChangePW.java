@@ -116,7 +116,7 @@ public class ChangePW extends AppCompatActivity {
                         if (userPasswordAgain.equals(userconfirmPassword) && validatePassword() &&  validatePasswordAgain() && validateNewPassword()){
                             reference.child(username).child("password").setValue(userconfirmPassword);
                             Toast.makeText(ChangePW.this, "Change password successfully", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(ChangePW.this, LoginActivity.class);
+                            Intent intent = new Intent(ChangePW.this, ChangPWSuccess.class);
                             startActivity(intent);
                         }
                         else{
