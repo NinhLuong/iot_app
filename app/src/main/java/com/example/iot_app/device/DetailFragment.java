@@ -130,6 +130,7 @@ public class DetailFragment extends Fragment {
         // Retrieve the value associated with the key "roomName" from the arguments supplied
         // when this fragment was instantiated and assign it to 'roomName'.
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(roomName);
+
 // Set the title text for this activity's ActionBar represented by 'toolbar'.
         int indexArea = getArguments().getInt("index");
         // Retrieve the value associated with the key "index" from the arguments supplied

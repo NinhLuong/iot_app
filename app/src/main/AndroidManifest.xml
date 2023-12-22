@@ -23,6 +23,11 @@
         <activity
             android:name=".account_page.ChangePW"
             android:exported="false" />
+
+        <activity
+            android:name=".account_page.ChangPWSuccess"
+            android:exported="false" />
+
         <activity
             android:name=".sign_up.OtpActivity"
             android:exported="false">

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5sp"
-        android:text="Edit Name Room"
+        android:text="Đổi tên kho"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
