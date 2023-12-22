@@ -8,7 +8,6 @@
     android:gravity="start"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
-    tools:context=".account_page.ChangePW">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,32 +16,29 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <TextView android:ellipsize="end"
+    <TextView
         android:id="@+id/txtResetpassword"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_20pxh"
         android:layout_marginStart="@dimen/_20pxh"
         android:layout_marginTop="@dimen/_51pxv"
         android:layout_width="match_parent"
-        android:singleLine="true"
         style="@style/txtPoppinsbold30"
-        tools:text="@string/lbl_reset_password"/>
-    <TextView android:ellipsize="end"
+        android:text="@string/lbl_reset_password"/>
+    <TextView
         android:id="@+id/txtPleasetypesom"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_20pxh"
-        android:layout_marginStart="@dimen/_20pxh"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="@dimen/_8pxv"
         android:layout_width="match_parent"
-        android:singleLine="true"
         style="@style/txtInterregular16_1"
-        tools:text="@string/msg_please_type_som"/>
+        android:text="@string/msg_please_type_som"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -88,9 +84,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -136,9 +131,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -199,18 +193,4 @@
         style="@style/btnSolidRounded_1"
         tools:text="@string/lbl_reset_password"/>
 
-    <TextView
-        android:id="@+id/txtConfirmation"
-        style="@style/txtInterregular14_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15pxh"
-        android:layout_marginTop="@dimen/_148pxv"
-        android:layout_marginEnd="@dimen/_15pxh"
-        android:layout_marginBottom="@dimen/_20pxv"
-        android:ellipsize="end"
-        android:gravity="center_horizontal"
-        android:singleLine="true"
-        tools:ignore="TextSizeCheck"
-        tools:text="@string/msg_already_have_an3" />
 </LinearLayout>
