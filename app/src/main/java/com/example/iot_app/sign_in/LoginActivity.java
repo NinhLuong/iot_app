@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iot_app.MainActivity;
@@ -25,7 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 //    khai báo kiểu class của các biến
     EditText loginUsername, loginPassword;
-    private Button loginBtn, signupBtn;
+    private Button loginBtn;
+    private TextView signupBtn;
     private ImageButton togglePasswordBtn;
 
     @Override

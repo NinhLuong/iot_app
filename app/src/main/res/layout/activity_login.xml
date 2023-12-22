@@ -32,15 +32,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:textAlignment="center"
+                android:layout_marginTop="-20dp"
+                android:layout_marginStart="30dp"
                 android:textColor="#6C5DD2"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please fill your detail to access your account."
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#667085"
+                android:textSize="14sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="vertical">
@@ -187,23 +198,19 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:text="Don't have an account?"
                         android:textAlignment="center"
                         android:textColor="#000000" />
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <TextView
                         android:id="@+id/btnSignup"
                         android:layout_marginStart="10dp"
-                        android:background="@drawable/button_background"
-                        style="@android:style/Widget.Button"
                         android:layout_height="wrap_content"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="#ffffff"
-                        android:layout_gravity="center"
-                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
                         android:text=" Sign up " />
 
 
@@ -211,17 +218,16 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnLogin"
-                    android:layout_width="200dp"
-                    android:background="@drawable/button_background"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/button_login_signup"
                     style="@android:style/Widget.Button"
                     android:layout_height="wrap_content"
                     android:text="Login"
+                    android:layout_marginHorizontal="30dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#ffffff"
-                    android:layout_marginTop="32dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"/>
+                    android:layout_marginTop="32dp" />
 
         </LinearLayout>
     </ScrollView>
