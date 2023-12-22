@@ -3,8 +3,10 @@ package com.example.iot_app.account_page;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,11 @@ import android.widget.TextView;
 import com.example.iot_app.R;
 import com.example.iot_app.sign_in.LoginActivity;
 import com.example.iot_app.sign_up.SignUpActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AccountFragment extends Fragment {
 
@@ -32,9 +37,49 @@ public class AccountFragment extends Fragment {
         Button btnLogout = view.findViewById(R.id.btnLogout);
         Button btnChangePW = view.findViewById(R.id.btnChangePass);
         TextView getUsername = view.findViewById(R.id.getUsername);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        TextView getEnail = view.findViewById(R.id.getEnail);
+        TextView getPhone = view.findViewById(R.id.getPhone);
 
 
+        DatabaseReference emailref = FirebaseDatabase.getInstance().getReference("users").child(username).child("phoneNumber");
+        DatabaseReference numberref = FirebaseDatabase.getInstance().getReference("users").child(username).child("email");
+
+        getUsername.setText(username);
+        emailref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                String emailfb = dataSnapshot.getValue(String.class);
+
+                if(emailfb != null){
+                    getEnail.setText(emailfb);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        numberref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                String numberfb = dataSnapshot.getValue(String.class);
+
+                if(numberfb != null){
+                    getPhone.setText(numberfb);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         // Add an action listener to the button
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
