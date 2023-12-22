@@ -182,7 +182,7 @@ public class LampFragment extends Fragment {
                 String detail = dataSnapshot.getValue(String.class);
                 Log.d("detail", "Value is: " + detail);
 
-                if(detail != null && !detail.equals("") && ledStatus){
+                if(detail != null && !detail.equals("")){
                     Log.d("Mau da set: ", detail);
                     switch (detail){
 

@@ -7,11 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.iot_app.account_page.AccountFragment;
+import com.example.iot_app.account_page.ChangePW;
 import com.example.iot_app.databinding.ActivityMainBinding;
 import com.example.iot_app.home_page.HomeFragment;
 import com.example.iot_app.webview_page.WebFragment;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     // This is a binding object for the activity to use in order to interact with the views defined in the XML layout files.
     String gusername;
+    String username;
 
     @Override
     protected void onStart() {
@@ -51,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         // Set the root view for this activity.
 
-        String username = getIntent().getStringExtra("username");
+        username = getIntent().getStringExtra("username");
         gusername = username;
+
+        Intent i = new Intent(MainActivity.this, ChangePW.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username);
+        i.putExtras(bundle);
         /*HomeFragment homeFragment = new HomeFragment();
         Bundle bundle = new Bundle();
         bundle.putString("username", username);
@@ -129,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
     }
     // Method to replace current fragment with new one.
     private void replaceFragment(Fragment fragment){
+        if (fragment instanceof AccountFragment) {
+            ((AccountFragment) fragment).setUsername(username);
+        }
 // Get an instance of FragmentManager for interacting with fragments associated with this activity.
         FragmentManager fragmentManager = getSupportFragmentManager();
 // Start a series of edit operations on the Fragments associated with this FragmentManager.t

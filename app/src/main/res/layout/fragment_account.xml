@@ -49,17 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:id="@+id/btnArrowleft"
-                    android:layout_width="@dimen/_50pxh"
-                    android:layout_height="@dimen/_50pxh"
-                    android:background="@drawable/rectangle_bg_bluegray_100_0f_border_gray_300_radius_25"
-                    android:paddingHorizontal="@dimen/_18pxh"
-                    android:paddingVertical="@dimen/_18pxv"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_arrowleft"
-                    tools:ignore="ContentDescription"
-                    android:contentDescription="Left Arrow"/>
+
 
                 <TextView
                     android:id="@+id/txtAccount"

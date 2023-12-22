@@ -76,6 +76,7 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     implementation("com.google.firebase:firebase-config:21.6.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("androidx.activity:activity:1.8.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     implementation ("io.github.chaosleung:pinview:1.4.4")
     implementation ("com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0")

@@ -124,8 +124,8 @@ public class HomeFragment extends Fragment {
 
         userName = view.findViewById(R.id.userName);
         rcvData = view.findViewById(R.id.rcv_data);
-//        userName.setText("Hi, " + username);
-//        userName.setText("Hi, " + mainActivity.getGusername());
+
+        userName.setText("Hi, " + mainActivity.getGusername());
         // Find a view that was identified by the 'rcv_data' id attribute in XML layout file and assign it to 'rcvData'.
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);

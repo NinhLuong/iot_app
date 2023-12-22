@@ -83,7 +83,20 @@ public class AirFragment extends Fragment {
                 if(ledStatus != null ){
 
                     switchAir.setChecked(ledStatus);
-
+                    if (!ledStatus ) {
+                        seekBarLamp.setEnabled(false);
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                            radioGroup.getChildAt(i).setEnabled(false);
+                        }
+                        Log.d("complete setup false", "Value is: " + ledStatus);
+                    }
+                    if (ledStatus ){
+                        seekBarLamp.setEnabled(true);
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                            radioGroup.getChildAt(i).setEnabled(true);
+                        }
+                        Log.d("complete setup true", "Value is: " + ledStatus);
+                    }
                 }
             }
             @Override
@@ -121,7 +134,7 @@ public class AirFragment extends Fragment {
         switchAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                myRef.child(roomName).child("devices").child(deviceName).child("swithStatus").setValue(isChecked);
+                myRef.child(roomName).child("devices").child(deviceName).child("autoStatus").setValue(isChecked);
 
             }
         });
