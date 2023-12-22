@@ -20,7 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText signupUsername, signupEmail, signupPassword, signup_phone;
-    Button signupButton, signinButton;
+    Button signupButton;
+    TextView signinButton;
     FirebaseDatabase database;
     DatabaseReference reference;
     private ImageButton togglePasswordBtn;
