@@ -113,10 +113,10 @@ public class ChangePW extends AppCompatActivity {
                     String passwordFromDB = snapshot.child(username).child("password").getValue(String.class);
                     if (passwordFromDB.equals(userPassword)) {
                         loginPassword.setError(null);
-                        if (userPasswordAgain.equals(userconfirmPassword)){
+                        if (userPasswordAgain.equals(userconfirmPassword) && validatePassword() &&  validatePasswordAgain() && validateNewPassword()){
                             reference.child(username).child("password").setValue(userconfirmPassword);
                             Toast.makeText(ChangePW.this, "Change password successfully", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(ChangePW.this, ChangPWSuccess.class);
+                            Intent intent = new Intent(ChangePW.this, LoginActivity.class);
                             startActivity(intent);
                         }
                         else{
@@ -164,13 +164,17 @@ public class ChangePW extends AppCompatActivity {
     }
 
     private boolean validateNewPassword() {
-        String val = resetPassword.getText().toString();
+        String val = loginPasswordAgain.getText().toString();
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
         if (val.isEmpty()) {
-            resetPassword.setError("New password cannot be empty");
+            loginPasswordAgain.setError("New password cannot be empty");
             return false;
-        } else {
-            resetPassword.setError(null);
+        }  else if(val.matches(passwordPattern)){
+            loginPasswordAgain.setError(null);
             return true;
+        }        else {
+            loginPasswordAgain.setError("Invalid new password ");
+            return false;
         }
     }
 }
