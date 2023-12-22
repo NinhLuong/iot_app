@@ -34,7 +34,8 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Exit the app with a normal exit code
-                System.exit(0);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 

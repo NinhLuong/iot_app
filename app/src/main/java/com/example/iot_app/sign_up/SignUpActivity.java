@@ -35,27 +35,23 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                database = FirebaseDatabase.getInstance();
-//                reference = database.getReference("users");
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("users");
                 String phoneNumber = signup_phone.getText().toString();
                 String email = signupEmail.getText().toString();
                 String username = signupUsername.getText().toString();
                 String password = signupPassword.getText().toString();
-                Log.d("password", password);
+                Log.d("username", username);
                 // Check if the inputs are valid
-                if (!isValidEmail(email)) {
-                    signupEmail.setError("Invalid email!");
-                    return;
-                }
 
-                if (!isValidPassword(password)) {
-                    signupPassword.setError("Invalid password! Password must have at least 8 characters including lowercase letters, uppercase letters, special characters and numbers.");
-                    return;
-                }
+                if (!isValidPhoneNumber(phoneNumber)| !isValidUserName(username) | !isValidPassword(password) | !isValidEmail(email) ) {
 
-                if (!isValidPhoneNumber(phoneNumber)) {
-                    signup_phone.setError("Invalid phone number! Phone number must have exactly 10 numbers starting with 0 with no characters.");
-                    return;
+                } else {
+                    HelperClass helperClass = new HelperClass( username, email, phoneNumber, password);
+                    reference.child(username).setValue(helperClass);
+                    Toast.makeText(SignUpActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 }
 
    /*             Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
@@ -64,14 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
                 intent.putExtra("phoneNumber", phoneNumber);
                 intent.putExtra("password", password);
                 startActivity(intent);*/
-
-                HelperClass helperClass = new HelperClass( username, email, phoneNumber, password);
-                reference.child(username).setValue(helperClass);
-                Toast.makeText(SignUpActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-
-
             }
         });
         signinButton.setOnClickListener(new View.OnClickListener() {
@@ -82,22 +70,61 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean isValidUserName(String username) {
+        if (username.isEmpty()) {
+            signupUsername.setError("Username cannot be empty");
+            return false;
+            }else {
+            return true;
+        }
+    }
+
     private boolean isValidEmail(String email) {
         // Check if the email is valid
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        if (email.isEmpty()) {
+            signupEmail.setError("Email cannot be empty");
+            return false;
+        }  else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            signupEmail.setError(null);
+            return true;
+        }else{
+            signupEmail.setError("Invalid email");
+            return false;
+        }
     }
 
     private boolean isValidPassword(String password) {
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
         // Check if the password is valid
         // Password must have at least 8 characters including lowercase letters, uppercase letters, special characters and numbers
-        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
-        return password.matches(passwordPattern);
+        if (password.isEmpty()) {
+            signupPassword.setError("Password cannot be empty");
+            return false;
+        }  else if(password.matches(passwordPattern)){
+            signupPassword.setError(null);
+            return true;
+        }else{
+            signupPassword.setError("Invalid Password");
+            return false;
+        }
+
     }
 
     private boolean isValidPhoneNumber(String phoneNumber) {
         // Check if the phone number is valid
         // Phone number must have exactly 10 numbers starting with 0 with no characters
         String phoneNumberPattern = "^0[0-9]{9}$";
-        return phoneNumber.matches(phoneNumberPattern);
+        if (phoneNumber.isEmpty()) {
+            signup_phone.setError("Phone Number cannot be empty");
+            return false;
+        }  else if(phoneNumber.matches(phoneNumberPattern)){
+            signup_phone.setError(null);
+            return true;
+        }else{
+            signup_phone.setError("Phone Number Invalid");
+            return false;
+        }
+
     }
 }

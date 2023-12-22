@@ -48,7 +48,10 @@ public class LoginActivity extends AppCompatActivity {
                     checkUser();
                 }
             }
+
+
         });
+
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
