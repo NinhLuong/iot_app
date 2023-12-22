@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button signupButton, signinButton;
     FirebaseDatabase database;
     DatabaseReference reference;
+    private ImageButton togglePasswordBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,25 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.btnSignup);
         signinButton = findViewById(R.id.btnlogin);
         signup_phone = findViewById(R.id.editPhone);
+
+        togglePasswordBtn = findViewById(R.id.btnTogglePassword);
+        togglePasswordBtn.setOnClickListener(new View.OnClickListener() {
+            boolean isPasswordVisible = false;
+
+            @Override
+            public void onClick(View v) {
+                isPasswordVisible = !isPasswordVisible;
+                if (isPasswordVisible) {
+                    signupPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                    togglePasswordBtn.setImageResource(R.drawable.ic_view_pass);
+                } else {
+                    signupPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    togglePasswordBtn.setImageResource(R.drawable.ic_hide_pass);
+                }
+                signupPassword.setSelection(signupPassword.getText().length());
+            }
+        });
+
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

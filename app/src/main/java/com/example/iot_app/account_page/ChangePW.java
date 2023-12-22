@@ -2,9 +2,11 @@ package com.example.iot_app.account_page;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +32,7 @@ public class ChangePW extends AppCompatActivity {
     EditText loginPassword, loginPasswordAgain, confirmPassword;
     AppCompatButton resetPassword;
     String username;
+    private ImageButton togglePasswordBtn, btnToggleNewPassword, btnToggleConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,10 @@ public class ChangePW extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Change Password");
+
+        togglePasswordBtn = findViewById(R.id.btnTogglePassword);
+        btnToggleNewPassword = findViewById(R.id.btnToggleNewPassword);
+        btnToggleConfirmPassword = findViewById(R.id.btnToggleConfirmPassword);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +62,7 @@ public class ChangePW extends AppCompatActivity {
             username = extras.getString("username");
             Log.d("username: ", username);
             // Do something with the value
-        }else {
+        } else {
             Log.d("username: ", "not found username");
         }
 
@@ -69,6 +76,26 @@ public class ChangePW extends AppCompatActivity {
                 }
             }
         });
+
+        togglePasswordBtn.setOnClickListener(createTogglePasswordClickListener(loginPassword, togglePasswordBtn));
+        btnToggleNewPassword.setOnClickListener(createTogglePasswordClickListener(loginPasswordAgain, btnToggleNewPassword));
+        btnToggleConfirmPassword.setOnClickListener(createTogglePasswordClickListener(confirmPassword, btnToggleConfirmPassword));
+
+    }
+
+    private View.OnClickListener createTogglePasswordClickListener(EditText passwordEditText, ImageButton toggleButton) {
+        return new View.OnClickListener() {
+            boolean isPasswordVisible = false;
+
+            @Override
+            public void onClick(View v) {
+                isPasswordVisible = !isPasswordVisible;
+                int inputType = isPasswordVisible ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
+                passwordEditText.setInputType(inputType);
+                passwordEditText.setSelection(passwordEditText.getText().length());
+                toggleButton.setImageResource(isPasswordVisible ? R.drawable.ic_view_pass : R.drawable.ic_hide_pass);
+            }
+        };
     }
 
     private void checkUser() {

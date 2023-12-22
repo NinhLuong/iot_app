@@ -2,19 +2,18 @@ package com.example.iot_app.sign_in;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.iot_app.MainActivity;
 import com.example.iot_app.R;
-import com.example.iot_app.home_page.HomeFragment;
 import com.example.iot_app.sign_up.SignUpActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 //    khai báo kiểu class của các biến
     EditText loginUsername, loginPassword;
     private Button loginBtn, signupBtn;
+    private ImageButton togglePasswordBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,26 @@ public class LoginActivity extends AppCompatActivity {
         loginPassword = findViewById(R.id.editPassword);
         loginBtn = findViewById(R.id.btnLogin);
         signupBtn = findViewById(R.id.btnSignup);
+
+        togglePasswordBtn = findViewById(R.id.btnTogglePassword);
+        togglePasswordBtn.setOnClickListener(new View.OnClickListener() {
+            boolean isPasswordVisible = false;
+
+            @Override
+            public void onClick(View v) {
+                isPasswordVisible = !isPasswordVisible;
+                if (isPasswordVisible) {
+                    loginPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                    togglePasswordBtn.setImageResource(R.drawable.ic_view_pass);
+                } else {
+                    loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    togglePasswordBtn.setImageResource(R.drawable.ic_hide_pass);
+                }
+                loginPassword.setSelection(loginPassword.getText().length());
+            }
+        });
+
+
 //        xử lý xự kiện khi nhấn nút button
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

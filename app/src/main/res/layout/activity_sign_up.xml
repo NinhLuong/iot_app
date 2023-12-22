@@ -60,7 +60,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/background_edit"
                     android:ems="10"
-                    android:gravity="center"
+                    android:paddingStart="20dp"
                     android:hint="Enter Your UserName"
                     android:inputType="text"
                     android:textColor="#707070"
@@ -91,7 +91,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/background_edit"
                     android:ems="10"
-                    android:gravity="center"
+                    android:paddingStart="20dp"
                     android:hint="Enter Your Email"
                     android:inputType="text"
                     android:textColor="#707070"
@@ -122,7 +122,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/background_edit"
                     android:ems="10"
-                    android:gravity="center"
+                    android:paddingStart="20dp"
                     android:hint="Enter Your Phone Number"
                     android:inputType="number"
                     android:textColor="#707070"
@@ -130,7 +130,7 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
@@ -143,8 +143,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Password"
+                    android:textColor="#6C5DD2"
                     android:textSize="18sp"
-                    android:textColor="#6C5DD2"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/editPassword"
@@ -153,13 +156,31 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/background_edit"
                     android:ems="10"
-                    android:gravity="center"
+                    android:paddingStart="20dp"
                     android:hint="Enter Your Password"
                     android:inputType="textPassword"
                     android:textColor="#707070"
                     android:textColorHint="#707070"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+
+                <ImageButton
+                    android:id="@+id/btnTogglePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/editPassword"
+                    android:layout_alignBottom="@id/editPassword"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:padding="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_hide_pass"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton
