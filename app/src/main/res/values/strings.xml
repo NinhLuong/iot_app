@@ -4,7 +4,7 @@
         <item>Air Condition</item>
         <item>Fan</item>
     </string-array>
-    <string name="app_name">iot_app</string>
+    <string name="app_name">Storage management</string>
     <string name="action_home">Home</string>
     <string name="enter_otp_here">Enter your OTP here</string>
     <string name="action_web">Web</string>
