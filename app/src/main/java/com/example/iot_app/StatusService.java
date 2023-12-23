@@ -80,7 +80,7 @@ public class StatusService extends Service {
                     NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), notificationChannelId)
                             .setContentTitle("SOS Status")
                             .setContentText("The temperature is exceeding the allowable threshold")
-                            .setSmallIcon(R.drawable.cold_storage)
+                            .setSmallIcon(R.drawable.error)
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             .setContentIntent(pendingIntent);
                     notificationManager.notify(powerStatusNotificationId, notificationBuilder.build());
@@ -90,7 +90,7 @@ public class StatusService extends Service {
                      }
                 } else {
                     notificationBuilder.setContentText("The temperature is within the allowable range");
-                    notificationBuilder.setSmallIcon(R.drawable.error);
+                    notificationBuilder.setSmallIcon(R.drawable.cold_storage);
                     notificationManager.notify(powerStatusNotificationId, notificationBuilder.build());
 
                      if (ringtone.isPlaying()) {

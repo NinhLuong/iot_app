@@ -151,12 +151,8 @@ public class DetailFragment extends Fragment {
                  Log.d("value_himi", "Value is: " + himi);
 
                 if(himi != null && !himi.equals("null")){
-                    txtTemp.setText(himi.substring(0, 2));
-                    if(Float.valueOf(himi) > 30){
-                        myRef.child(roomName).child("SOS").setValue("true");
-                    }else {
-                        myRef.child(roomName).child("SOS").setValue("false");
-                    }
+                    txtHum.setText(himi.substring(0, 2));
+
                 }
 
             }
@@ -174,6 +170,12 @@ public class DetailFragment extends Fragment {
                     String temp = dataSnapshot.getValue(String.class);
                     if(temp != null && !temp.equals("null")){
                         txtTemp.setText(temp.substring(0, 2));
+                        if(Float.parseFloat(temp)> 32){
+                            Log.d("txtTemp: ", String.valueOf(Float.parseFloat(temp)));
+                            myRef.child(roomName).child("SOS").setValue("true");
+                        }else if (Float.parseFloat(temp) < 32) {
+                            myRef.child(roomName).child("SOS").setValue("false");
+                        }
                     }
                 }
             @Override
