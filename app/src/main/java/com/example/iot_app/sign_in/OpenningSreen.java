@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.iot_app.R;
 
@@ -16,7 +17,7 @@ public class OpenningSreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_openning_sreen);
 
-        AppCompatButton startBtn = findViewById(R.id.btnStart);
+        TextView startBtn = findViewById(R.id.btnStart);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -157,18 +157,18 @@ public class FanFragment extends Fragment {
 
                     case "low":
                         fanLow.setChecked(true);
-                        txtMin.setText("50");
-                        txtMax.setText("100");
+                        txtMin.setText("0");
+                        txtMax.setText("50");
                         break;
                     case "high":
                         fanHigh.setChecked(true);
-                        txtMin.setText("-50");
-                        txtMax.setText("40");
+                        txtMin.setText("100");
+                        txtMax.setText("200");
                         break;
                     default:
                         fanMedium.setChecked(true);
-                        txtMin.setText("0");
-                        txtMax.setText("40");
+                        txtMin.setText("50");
+                        txtMax.setText("100");
                         break;
                 }
             }
@@ -207,6 +207,7 @@ public class FanFragment extends Fragment {
 
         if (radioButton.getId() == R.id.fanLow) {
             return "low";
+
         } else if (radioButton.getId() == R.id.fanHigh) {
             return "high";
         } else {

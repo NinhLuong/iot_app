@@ -39,8 +39,11 @@ import com.example.iot_app.R;
 import com.example.iot_app.SharedViewModel;
 import com.example.iot_app.StatusService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -78,7 +81,7 @@ public class HomeFragment extends Fragment {
 
     private String latitude ="" ;
     private String longitude ="" ;
-
+    String name = "";
 
     TextView NameofCity, Temperature, Humidity, dateTime;
     ImageView weatherIcon;
@@ -124,6 +127,26 @@ public class HomeFragment extends Fragment {
         dateTime = view.findViewById(R.id.textDateTime);
 
         dateTime.setText(formattedDate);
+        DatabaseReference tempRef = myRef.child(name).child("Temp");
+        /*tempRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get the data from the snapshot
+                String temp = dataSnapshot.getValue(String.class);
+                if(temp != null && !temp.equals("null")){
+                    if(Float.parseFloat(temp)> 32){
+                        Log.d("txtTemp: ", String.valueOf(Float.parseFloat(temp)));
+                        myRef.child(name).child("SOS").setValue("true");
+                    }else if (Float.parseFloat(temp) < 32) {
+                        myRef.child(name).child("SOS").setValue("false");
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });*/
 
         locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
@@ -186,7 +209,7 @@ public class HomeFragment extends Fragment {
                     // This method is called when 'btnAdd' is clicked or tapped.
                     @Override
                     public void onClick(View view) {
-                        String name = "";
+
 
                         if(!edtNameRoom.getText().toString().equals("") ){
                             name = edtNameRoom.getText().toString();
@@ -237,7 +260,7 @@ public class HomeFragment extends Fragment {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                 }
             }
-        }, 5000);
+        }, 2000);
 
     }
 

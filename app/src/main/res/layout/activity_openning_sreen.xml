@@ -47,7 +47,7 @@
         android:textColor="#707070"
         android:textSize="20sp"
         android:layout_marginTop="5dp"
-        android:text="Use your phone to control \n and monitor devices \n in your home."
+        android:text="Use your phone to control \n and monitor devices \n in your cold storage."
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <TextView
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -42,8 +42,8 @@ public class AccountFragment extends Fragment {
         TextView getPhone = view.findViewById(R.id.getPhone);
 
 
-        DatabaseReference emailref = FirebaseDatabase.getInstance().getReference("users").child(username).child("phoneNumber");
-        DatabaseReference numberref = FirebaseDatabase.getInstance().getReference("users").child(username).child("email");
+        DatabaseReference emailref = FirebaseDatabase.getInstance().getReference("users").child(username).child("email");
+        DatabaseReference numberref = FirebaseDatabase.getInstance().getReference("users").child(username).child("phoneNumber");
 
         getUsername.setText(username);
         titleUsername.setText(username);
