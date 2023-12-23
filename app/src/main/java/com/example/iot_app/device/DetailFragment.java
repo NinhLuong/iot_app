@@ -153,7 +153,9 @@ public class DetailFragment extends Fragment {
                 if(himi != null && !himi.equals("null")){
                     txtTemp.setText(himi.substring(0, 2));
                     if(Float.valueOf(himi) > 30){
-//                        myRef.child(roomName).child("SOS").setValue("true");
+                        myRef.child(roomName).child("SOS").setValue("true");
+                    }else {
+                        myRef.child(roomName).child("SOS").setValue("false");
                     }
                 }
 
